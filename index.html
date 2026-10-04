@@ -1,0 +1,3693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>manassi.com - دليلك الذكي لعالم الألعاب والجيمنج</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-purple: #8B5CF6;
+      --neon-cyan: #06B6D4;
+      --bg-dark: #0b0f19;
+      --card-dark: #111827;
+      --card-hover: #162036;
+      --border-color: #1f293d;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    /* Neon Glows */
+    .neon-purple { color: var(--neon-purple); }
+    .neon-cyan { color: var(--neon-cyan); }
+    .glow-purple { box-shadow: 0 0 20px -5px rgba(139, 92, 246, 0.4); }
+    .glow-cyan { box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.4); }
+
+    /* Top Banner Ad - first thing shown, sized to its actual content */
+    .top-banner-ad {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-dark);
+    }
+    .top-banner-ad iframe {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* Header */
+    header {
+      background: rgba(11, 15, 25, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+    .brand-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .brand-tagline { font-size: 12px; color: var(--text-muted); }
+
+    /* Container */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Search Area */
+    .search-section { margin: 36px 0 24px 0; text-align: center; }
+    .search-box {
+      display: flex;
+      background: var(--card-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 8px;
+      max-width: 800px;
+      margin: 0 auto;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+    .search-box:focus-within {
+      border-color: var(--neon-purple);
+      box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+    }
+    .search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-family: inherit;
+      font-size: 16px;
+      padding: 12px 16px;
+      outline: none;
+    }
+    .btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--neon-purple), #7c3aed);
+      color: #fff;
+    }
+    .btn-primary:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .btn-secondary {
+      background: #162036;
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      color: var(--neon-cyan);
+    }
+    .btn-secondary:hover { background: #1e293b; color: #fff; }
+
+    /* Quick Prompts */
+    .quick-prompts {
+      display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 14px;
+    }
+    .prompt-chip {
+      background: #161f33;
+      border: 1px solid #27354f;
+      color: #cbd5e1;
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .prompt-chip:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+
+    /* Filter Chips */
+    .filters {
+      display: flex; gap: 10px; overflow-x: auto; padding: 12px 0 24px 0; margin-bottom: 20px;
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--card-dark);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--neon-purple);
+      color: #fff;
+      border-color: var(--neon-purple);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+    }
+
+    /* AI Response Banner */
+    #aiResponseBox {
+      display: none;
+      background: linear-gradient(180deg, #161d31, #0f1523);
+      border: 1px solid rgba(139, 92, 246, 0.5);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+    }
+    #aiResponseBox h4 { color: var(--neon-cyan); margin-bottom: 8px; font-size: 16px; }
+
+    /* Games Grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    /* In-content Ad Slot - placed between game cards */
+    .in-content-ad-slot {
+      grid-column: 1 / -1;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      min-height: 250px;
+    }
+    .in-content-ad-slot iframe { display: block; max-width: 100%; }
+    .game-card {
+      background: var(--card-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .game-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--neon-purple);
+      box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+    }
+    .card-img { width: 100%; height: 180px; object-fit: cover; }
+    .card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .card-genre { font-size: 12px; color: var(--neon-cyan); margin-bottom: 8px; }
+    .card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+    .card-rating {
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid rgba(234, 179, 8, 0.4);
+      color: #facc15;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+      z-index: 100; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-content {
+      background: #0e1422; border: 1px solid rgba(139,92,246,0.4); border-radius: 20px;
+      max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 24px;
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+    }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+    th, td { padding: 10px 14px; text-align: right; border-bottom: 1px solid #1e2a42; }
+    th { background: #111827; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div id="topBannerAd" class="top-banner-ad">
+    <script>
+      (function () {
+        var w = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        var h = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        window.atOptions = {
+          'key': '54de5027e97a81ba9cd3ec33954b8698',
+          'format': 'iframe',
+          'height': h,
+          'width': w,
+          'params': {}
+        };
+      })();
+    </script>
+    <script src="https://pl31506750.profitableratecpmnetwork.com/00/8f/00/008f0061b7d4bd4a696c0e83c2fb4e2b.js"></script>
+    <script src="https://www.highrevenueformat.com/54de5027e97a81ba9cd3ec33954b8698/invoke.js"></script>
+  </div>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🎮</div>
+      <div>
+        <div class="brand-title">manassi.com</div>
+        <div class="brand-tagline">دليلك الذكي لعالم الألعاب والجيمنج</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="search-section">
+      <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="اسأل الذكاء الاصطناعي... مثال: ألعاب تشبه The Witcher 3 أو متطلبات تشغيل GTA VI">
+        <button class="btn btn-primary" onclick="performSearch()">ابحث عن لعبة</button>
+        <button class="btn btn-secondary" onclick="randomSuggestion()">اقتراح عشوائي</button>
+      </div>
+
+      <div class="quick-prompts">
+        <span class="prompt-chip" onclick="applyPrompt('ألعاب تشبه The Witcher 3')">ألعاب تشبه The Witcher 3</span>
+        <span class="prompt-chip" onclick="applyPrompt('ألعاب مجانية للأجهزة الضعيفة')">ألعاب مجانية للأجهزة الضعيفة</span>
+        <span class="prompt-chip" onclick="applyPrompt('متطلبات تشغيل GTA VI')">متطلبات تشغيل GTA VI</span>
+        <span class="prompt-chip" onclick="applyPrompt('ألعاب قصة طويلة')">ألعاب قصة طويلة</span>
+      </div>
+    </div>
+
+    <!-- AI Response Box -->
+    <div id="aiResponseBox">
+      <h4 id="aiTitle">تحليل الذكاء الاصطناعي</h4>
+      <p id="aiContent" style="margin-bottom: 12px; color: #cbd5e1;"></p>
+      <div id="aiTips" style="font-size: 12px; color: var(--neon-cyan);"></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterGames('all', this)">جميع الألعاب</button>
+      <button class="filter-btn" onclick="filterGames('pc', this)">ألعاب كمبيوتر</button>
+      <button class="filter-btn" onclick="filterGames('ps5', this)">ألعاب بلايستيشن</button>
+      <button class="filter-btn" onclick="filterGames('low-spec', this)">ألعاب خفيفة</button>
+      <button class="filter-btn" onclick="filterGames('long-story', this)">ألعاب قصة طويلة</button>
+      <button class="filter-btn" onclick="filterGames('multiplayer', this)">ألعاب أونلاين جماعية</button>
+    </div>
+
+    <!-- Games Container -->
+    <div class="games-grid" id="gamesGrid"></div>
+  </main>
+
+  <!-- Game Details Modal -->
+  <div class="modal-overlay" id="gameModal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 id="mTitle" style="color:#fff;">عنوان اللعبة</h2>
+        <button class="btn btn-secondary" onclick="closeModalDirect()" style="padding:6px 12px;">✕ إغلاق</button>
+      </div>
+      <p id="mDesc" style="color:#cbd5e1; font-size:14px; margin-bottom:16px;"></p>
+      <h4 style="color:var(--neon-cyan); margin-bottom:8px;">متطلبات التشغيل (الحد الأدنى والموصى به):</h4>
+      <table id="mSpecsTable"></table>
+      <div id="mSimilar" style="margin-top:16px;"></div>
+    </div>
+  </div>
+
+  <script>
+    const database = [
+  {
+    "id": "gta-vi",
+    "title": "جراند ثفت أوتو 6 (قراند 6)",
+    "titleEn": "Grand Theft Auto VI",
+    "rating": 9.9,
+    "reviewCount": 1250000,
+    "genre": [
+      "عالم مفتوح",
+      "أكشن وجريمة",
+      "قيادة سيارات",
+      "قصة سينمائية"
+    ],
+    "category": [
+      "ps5",
+      "pc",
+      "long-story",
+      "multiplayer"
+    ],
+    "coverImage": "https://www.rockstargames.com/VI/_next/static/media/poster_full.0az_iud2g3y4j.jpg?akim=1&imdensity=1&imwidth=1200",
+    "backdropImage": "https://www.rockstargames.com/VI/_next/static/media/poster_full.0az_iud2g3y4j.jpg?akim=1&imdensity=1&imwidth=1920",
+    "releaseYear": "2025 / 2026",
+    "developer": "Rockstar Games",
+    "description": "العودة المنتظرة إلى ولاية ليونيدا وشوارع فايس سيتي المشمسة والمليئة بالنيون. تتابع قصة الثنائي لوسيا وجايسون في أضخم وأعقد عالم مفتوح تفاعلي تم بناؤه في تاريخ الألعاب.",
+    "features": [
+      "أضخم وأكثر خريطة واقعية وتفاعلية في تاريخ ألعاب الفيديو",
+      "فيزياء ماء ومركبات وذكاء اصطناعي ثوري للمشاة والشرطة",
+      "رسوميات جيل قادم مبهرة على محرك RAGE المطور",
+      "بطلة أنثوية للمرة الأولى في تاريخ السلسلة ثلاثية الأبعاد"
+    ],
+    "minRequirements": {
+      "os": "Windows 11 (64-bit)",
+      "cpu": "Intel Core i7-8700K / AMD Ryzen 5 3600X",
+      "gpu": "Nvidia RTX 2070 / AMD Radeon RX 6700 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "150 جيجابايت SSD NVMe"
+    },
+    "recRequirements": {
+      "os": "Windows 11 (64-bit)",
+      "cpu": "Intel Core i7-13700K / AMD Ryzen 7 7800X3D",
+      "gpu": "Nvidia RTX 4070 Ti / AMD Radeon RX 7900 XT",
+      "ram": "32 جيجابايت RAM",
+      "storage": "150 جيجابايت SSD NVMe Gen 4"
+    },
+    "similarGameIds": [
+      "rdr2",
+      "cyberpunk-2077"
+    ],
+    "trailerOrGameplayNote": "أكثر مقطع دعائي مشاهدة في تاريخ الترفيه بأكثر من 200 مليون مشاهدة.",
+    "tags": [
+      "قراند",
+      "سيارات",
+      "سرقة",
+      "روكستار",
+      "فايس سيتي",
+      "gta",
+      "عالم مفتوح",
+      "لوسيا"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "witcher-3",
+    "title": "ذا ويتشر 3: الصيد البري",
+    "titleEn": "The Witcher 3: Wild Hunt",
+    "rating": 9.8,
+    "reviewCount": 684200,
+    "genre": [
+      "عالم مفتوح",
+      "RPG",
+      "مغامرات",
+      "قصة"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/292030/library_hero.jpg",
+    "releaseYear": "2015 (نسخة الجيل الجديد 2022)",
+    "developer": "CD PROJEKT RED",
+    "description": "واحدة من أعظم ألعاب تقمص الأدوار في التاريخ. تلعب بدور جيرالت أوف ريفيا، صائد الوحوش المأجور الذي يبحث عن طفلة النبوءة \"سيري\" في عالم شاسع يعج بالحروب والمخلوقات الأسطورية وقصص ملحمية عميقة.",
+    "features": [
+      "قصة رئيسية تتجاوز 70 ساعة وأكثر من 150 ساعة من المهام الجانبية",
+      "قرارات أخلاقية معقدة تؤدي إلى 36 نهاية مختلفة للعالم",
+      "عالم حيوي مفعم بالتفاصيل من قلاع نوفيغراد إلى جزر سكيليجا المثلجة",
+      "ترقية بصرية تدعم تتبع الأشعة (Ray Tracing)"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-2500K / AMD Phenom II X4 940",
+      "gpu": "Nvidia GTX 660 / AMD Radeon HD 7870",
+      "ram": "8 جيجابايت RAM",
+      "storage": "50 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-3770 / AMD FX-8350",
+      "gpu": "Nvidia GTX 1060 (6GB) / AMD Radeon RX 590",
+      "ram": "16 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "rdr2",
+      "elden-ring",
+      "cyberpunk-2077",
+      "god-of-war"
+    ],
+    "trailerOrGameplayNote": "حاصلة على أكثر من 250 جائزة كأفضل لعبة للعام.",
+    "tags": [
+      "سحر",
+      "وحوش",
+      "سيوف",
+      "عالم مفتوح",
+      "قصة سينمائية",
+      "خيارات",
+      "تختيم"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "cyberpunk-2077",
+    "title": "سايبربانك 2077",
+    "titleEn": "Cyberpunk 2077",
+    "rating": 9.2,
+    "reviewCount": 523100,
+    "genre": [
+      "سايبربانك",
+      "تصويب منظور أول",
+      "عالم مفتوح",
+      "RPG"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1091500/library_hero.jpg",
+    "releaseYear": "2020 (تحديث 2.0 وتوسعة Phantom Liberty)",
+    "developer": "CD PROJEKT RED",
+    "description": "انغمس في مدينة الليل \"Night City\" الخيالية المستقبلية والمغرية. تقمص شخصية V المرتزق الخارج عن القانون في سباق لسرقة شريحة دماغية تحمل وعي جوني سيلفرهاند (كيانو ريفز).",
+    "features": [
+      "حرية بناء الشخصية (هاكر نترانر، نينجا سيوف كاتانا، أو مدفع ثقيل)",
+      "مدينة نايت سيتي بتصميم عمودي مبهر وإضاءات نيون",
+      "توسعة فانتوم ليبرتي بمشاركة النجم إدريس إلبا",
+      "تتبع الأشعة الكامل الفائق (Path Tracing)"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i7-6700 / AMD Ryzen 5 1600",
+      "gpu": "Nvidia GTX 1060 (6GB) / AMD Radeon RX 580",
+      "ram": "12 جيجابايت RAM",
+      "storage": "70 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-12700 / AMD Ryzen 7 7800X3D",
+      "gpu": "Nvidia RTX 2060 Super / AMD Radeon RX 5700 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "70 جيجابايت SSD M.2"
+    },
+    "similarGameIds": [
+      "witcher-3",
+      "gta-vi",
+      "rdr2"
+    ],
+    "trailerOrGameplayNote": "تجربة بصرية مذهلة بعد التحديثات الضخمة وتوسعة فانتوم ليبرتي.",
+    "tags": [
+      "نيون",
+      "مستقبل",
+      "سيارات",
+      "هاكر",
+      "أسلحة",
+      "عالم مفتوح",
+      "كيانو ريفز"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "elden-ring",
+    "title": "إلدن رينغ",
+    "titleEn": "Elden Ring",
+    "rating": 9.7,
+    "reviewCount": 780400,
+    "genre": [
+      "سولز لايك",
+      "عالم مفتوح",
+      "فانتازيا مظلمة",
+      "RPG"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/library_hero.jpg",
+    "releaseYear": "2022 (توسعة Shadow of the Erdtree 2024)",
+    "developer": "FromSoftware / Bandai Namco",
+    "description": "تحفة هيديتاكا ميازاكي بمشاركة مؤلف صراع العروش جورج آر آر مارتن. استكشف \"الأراضي الواقعة بينهما\"، وامتطِ حصانك الشبح تورينت لمواجهة أنصاف الآلهة واستعادة خاتم الإلدن لتصبح لورد الإلدن.",
+    "features": [
+      "فائزة بجائزة لعبة العام (GOTY 2022) وأكثر من 300 جائزة عالمية",
+      "حرية استكشاف غير مسبوقة دون مؤشرات إجبارية على الخريطة",
+      "مئات الأسلحة والتعاويذ والدروع والوحوش الأسطورية",
+      "إمكانية استدعاء الأصدقاء للمساعدة في قتال الزعماء الصعبة"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-8400 / AMD Ryzen 3 3300X",
+      "gpu": "Nvidia GeForce GTX 1060 3GB / AMD Radeon RX 580 4GB",
+      "ram": "12 جيجابايت RAM",
+      "storage": "60 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-8700K / AMD Ryzen 5 3600X",
+      "gpu": "Nvidia GeForce GTX 1070 8GB / AMD Radeon RX Vega 56",
+      "ram": "16 جيجابايت RAM",
+      "storage": "60 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "dark-souls-3",
+      "sekiro",
+      "bloodborne",
+      "witcher-3"
+    ],
+    "trailerOrGameplayNote": "أعظم إنجاز في تاريخ ألعاب السولز والعوالم المفتوحة.",
+    "tags": [
+      "سولز",
+      "صعوبة",
+      "زعماء",
+      "سيوف",
+      "سحر",
+      "إلدن",
+      "ميازاكي",
+      "تحدي"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "rdr2",
+    "title": "ريد ديد ريدمبشن 2",
+    "titleEn": "Red Dead Redemption 2",
+    "rating": 9.9,
+    "reviewCount": 910000,
+    "genre": [
+      "عالم مفتوح",
+      "قصة سينمائية",
+      "غرب أمريكي",
+      "أكشن"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1174180/library_hero.jpg",
+    "releaseYear": "2018 (الكمبيوتر 2019)",
+    "developer": "Rockstar Games",
+    "description": "أمريكا عام 1899، نهاية عصر الغرب المتوحش. قصة ملحمية عن الخارج عن القانون آرثر مورجان وعصابة فان دير ليند الفارين من العدالة. مستوى مذهل وغير مسبوق من الواقعية في التاريخ.",
+    "features": [
+      "واحدة من أعظم القصص الدرامية المكتوبة في تاريخ الألعاب",
+      "نظام بيئي حيوي يضم أكثر من 200 نوع من الحيوانات الحقيقية",
+      "فيزياء واقعية وتفاعل دقيق مع كل شخصية وعنصر في العالم",
+      "طور ريد ديد أونلاين لمغامرات الغرب الأمريكي مع أصدقائك"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-2500K / AMD FX-6300",
+      "gpu": "Nvidia GeForce GTX 770 2GB / AMD Radeon R9 280",
+      "ram": "8 جيجابايت RAM",
+      "storage": "150 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-4770K / AMD Ryzen 5 1500X",
+      "gpu": "Nvidia GeForce GTX 1060 6GB / AMD Radeon RX 480",
+      "ram": "12 جيجابايت RAM",
+      "storage": "150 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "gta-vi",
+      "witcher-3",
+      "god-of-war"
+    ],
+    "trailerOrGameplayNote": "قمة الإتقان السردي والواقعية التفاعلية من استوديوهات روكستار.",
+    "tags": [
+      "آرثر مورجان",
+      "خيول",
+      "غرب أمريكي",
+      "روكستار",
+      "قصة",
+      "صيد",
+      "مسدسات"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "god-of-war",
+    "title": "إله الحرب: راجناروك",
+    "titleEn": "God of War Ragnarök",
+    "rating": 9.6,
+    "reviewCount": 420000,
+    "genre": [
+      "أكشن مغامرات",
+      "أساطير نوردية",
+      "قصة سينمائية",
+      "هاك آند سلاش"
+    ],
+    "category": [
+      "ps5",
+      "pc",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2322010/library_hero.jpg",
+    "releaseYear": "2022 (الكمبيوتر 2024)",
+    "developer": "Santa Monica Studio / Sony",
+    "description": "يخوض كريتوس وابنه أتريوس رحلة أسطورية عبر العوالم التسعة في الأساطير الإسكندنافية قبل اندلاع معركة راجناروك الحتمية التي ستدمر العالم ومواجهة ثور وأودين.",
+    "features": [
+      "قتال سينمائي ملحمي بفأس الليفياثان وشفرات الفوضى ورمح دراوبنير",
+      "سرد عاطفي عميق يركز على علاقة الأب وابنه",
+      "عوالم تسعة متنوعة بصرياً بأعلى دقة رسومية",
+      "إشادة نقدية هائلة وحاصدة جوائز لأفضل أداء وتمثيل صوتي"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-6600K / AMD Ryzen 5 2400G",
+      "gpu": "Nvidia GTX 1060 (6GB) / AMD Radeon RX 570",
+      "ram": "8 جيجابايت RAM",
+      "storage": "190 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-7700K / AMD Ryzen 5 3600X",
+      "gpu": "Nvidia RTX 2060 Super / AMD Radeon RX 5700",
+      "ram": "16 جيجابايت RAM",
+      "storage": "190 جيجابايت SSD فائقة السرعة"
+    },
+    "similarGameIds": [
+      "witcher-3",
+      "elden-ring",
+      "ghost-of-tsushima"
+    ],
+    "trailerOrGameplayNote": "ملحمة نوردية سينمائية خالصة لا تفوت أي لاعب.",
+    "tags": [
+      "كريتوس",
+      "فأس",
+      "ثور",
+      "أساطير",
+      "نوردية",
+      "بلايستيشن",
+      "قتال",
+      "قصة"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "black-myth-wukong",
+    "title": "الأسطورة السوداء: ووكونغ",
+    "titleEn": "Black Myth: Wukong",
+    "rating": 9.5,
+    "reviewCount": 650000,
+    "genre": [
+      "أكشن آر بي جي",
+      "أساطير صينية",
+      "سولز لايك",
+      "مغامرات"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/library_hero.jpg",
+    "releaseYear": "2024",
+    "developer": "Game Science",
+    "description": "لعبة الأكشن المستوحاة من الرواية الصينية الكلاسيكية \"رحلة إلى الغرب\". تقمص شخصية المقدر (القرد الأسطوري) وانطلق في رحلة مليئة بالأسرار والوحوش السحرية والزعماء الخرافيين على محرك Unreal Engine 5.",
+    "features": [
+      "حطمت الأرقام القياسية بثاني أعلى عدد لاعبين متزامنين في تاريخ ستيم",
+      "رسوميات ثورية باستخدام تقنيات Nanite و Lumen في UE5",
+      "قتال عصا خارق وسريع مع عشرات التعاويذ والتحولات السحرية",
+      "أكثر من 80 زعيم مميز بتصاميم صينية أسطورية فريدة"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-8400 / AMD Ryzen 5 1600",
+      "gpu": "Nvidia GeForce GTX 1060 (6GB) / AMD Radeon RX 580",
+      "ram": "16 جيجابايت RAM",
+      "storage": "130 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-9700 / AMD Ryzen 5 5500",
+      "gpu": "Nvidia GeForce RTX 2060 / AMD Radeon RX 5700 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "130 جيجابايت SSD NVMe"
+    },
+    "similarGameIds": [
+      "elden-ring",
+      "sekiro",
+      "god-of-war"
+    ],
+    "trailerOrGameplayNote": "الظاهرة العالمية لعام 2024 بأكثر من 20 مليون نسخة مباعة.",
+    "tags": [
+      "ووكونغ",
+      "قرد",
+      "أساطير صينية",
+      "سحر",
+      "زعماء",
+      "عصا",
+      "تحدي",
+      "ue5"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "baldurs-gate-3",
+    "title": "بوابات بالدور 3",
+    "titleEn": "Baldur's Gate 3",
+    "rating": 9.8,
+    "reviewCount": 540000,
+    "genre": [
+      "RPG كلاسيكي",
+      "قتال تكتيكي نوباتي",
+      "خيارات وقصة",
+      "فانتازيا"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story",
+      "multiplayer"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1086940/library_hero.jpg",
+    "releaseYear": "2023",
+    "developer": "Larian Studios",
+    "description": "الفائزة المطلقة بجائزة لعبة العام (GOTY 2023). مغامرة تقمص أدوار قائمة على قواعد D&D تمنحك حرية قرار لا نهائية في الحوارات، القتال التكتيكي، والتحالفات في عالم الممالك المنسية.",
+    "features": [
+      "أكثر من 17,000 تفرع ممكن لنهايات اللعبة وحرية كتابية مذهلة",
+      "نظام قتال تكتيكي نوباتي عميق يعتمد على فيزياء البيئة والسحر",
+      "إمكانية اللعب التعاوني الكامل عبر الشبكة مع حتى 4 أصدقاء",
+      "أداء تمثيلي وصوتي لجميع الشخصيات والحيوانات بجودة هوليوود"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-4690 / AMD FX 8350",
+      "gpu": "Nvidia GTX 970 / AMD Radeon RX 480 (4GB)",
+      "ram": "8 جيجابايت RAM",
+      "storage": "150 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-8700K / AMD Ryzen 5 3600",
+      "gpu": "Nvidia RTX 2060 Super / AMD Radeon RX 5700 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "150 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "witcher-3",
+      "elden-ring"
+    ],
+    "trailerOrGameplayNote": "معيار جديد في صناعة ألعاب تقمص الأدوار والحرية الخالصة.",
+    "tags": [
+      "dnd",
+      "سحر",
+      "نرد",
+      "خيارات",
+      "تكتيك",
+      "شخصيات",
+      "تعاوني",
+      "قصة"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "ghost-of-tsushima",
+    "title": "شبح تسوشيما",
+    "titleEn": "Ghost of Tsushima DIRECTOR’S CUT",
+    "rating": 9.5,
+    "reviewCount": 310000,
+    "genre": [
+      "عالم مفتوح",
+      "ساموراي",
+      "أكشن وسيوف",
+      "تاريخي"
+    ],
+    "category": [
+      "ps5",
+      "pc",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/library_hero.jpg",
+    "releaseYear": "2020 (نسخة الحاسوب 2024)",
+    "developer": "Sucker Punch Productions / Sony",
+    "description": "في أواخر القرن الثالث عشر، تغزو الإمبراطورية المغولية جزيرة تسوشيما اليابانية. يضطر الساموراي جين ساكاي إلى التخلي عن شرف الساموراي ليصبح \"الشبح\" ويحرر وطنه بأساليب غير تقليدية.",
+    "features": [
+      "نظام الرياح التوجيهية الشاعري دون الحاجة لبوصلة أو شاشات معقدة",
+      "قتال سيوف كاتانا هو الأدق والأكثر أناقة في الألعاب",
+      "مناظر طبيعية خلابة مستوحاة من السينما اليابانية وأفلام كوروساوا",
+      "طور اللعب الجماعي التعاوني أساطير (Legends) مجاناً"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i3-7100 / AMD Ryzen 3 1200",
+      "gpu": "Nvidia GTX 960 (4GB) / AMD Radeon RX 5500 XT",
+      "ram": "8 جيجابايت RAM",
+      "storage": "75 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-8600 / AMD Ryzen 5 3600",
+      "gpu": "Nvidia RTX 2060 / AMD Radeon RX 5600 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "75 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "sekiro",
+      "witcher-3",
+      "elden-ring"
+    ],
+    "trailerOrGameplayNote": "لوحة فنية سينمائية لليابان الإقطاعية قتالية وبصرية مدهشة.",
+    "tags": [
+      "ساموراي",
+      "كاتانا",
+      "اليابان",
+      "سيوف",
+      "شبح",
+      "مغول",
+      "عالم مفتوح"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "dark-souls-3",
+    "title": "دارك سولز 3",
+    "titleEn": "Dark Souls III",
+    "rating": 9.4,
+    "reviewCount": 450000,
+    "genre": [
+      "سولز لايك",
+      "فانتازيا مظلمة",
+      "أكشن آر بي جي",
+      "صعوبة وتحدي"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/374320/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/374320/library_hero.jpg",
+    "releaseYear": "2016",
+    "developer": "FromSoftware",
+    "description": "خاتمة ملحمية لثلاثية دارك سولز الشهيرة. انطلق ككائن رمادي عبر مملكة لوثريك المنهارة لإعادة أشعال الشعلة ومواجهة لوردات الرماد في معارك زعماء لا تُنسى.",
+    "features": [
+      "تصميم زعماء ملحمي وموسيقى أوركسترالية مهيبة تحبس الأنفاس",
+      "تنوع هائل في فئات الشخصيات وبناء الدروع والأسلحة",
+      "عالم مترابط ذكي يكافئ الاستكشاف الدقيق والملاحظة",
+      "نظام غزو واستدعاء جماعي تنافسي وتعاوني رائع"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8.1 / 10 (64-bit)",
+      "cpu": "Intel Core i3-2100 / AMD FX-6300",
+      "gpu": "Nvidia GeForce GTX 750 Ti / ATI Radeon HD 7950",
+      "ram": "4 جيجابايت RAM",
+      "storage": "25 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i7-3770 / AMD FX-8350",
+      "gpu": "Nvidia GeForce GTX 970 / ATI Radeon R9",
+      "ram": "8 جيجابايت RAM",
+      "storage": "25 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "elden-ring",
+      "sekiro",
+      "bloodborne"
+    ],
+    "trailerOrGameplayNote": "القمة الخالدة في تاريخ سلسلة سولز الكلاسيكية.",
+    "tags": [
+      "سولز",
+      "صعوبة",
+      "نار",
+      "زعماء",
+      "دارك سولز",
+      "سيوف",
+      "تحدي"
+    ]
+  },
+  {
+    "id": "sekiro",
+    "title": "سيكيرو: الظلال تموت مرتين",
+    "titleEn": "Sekiro: Shadows Die Twice",
+    "rating": 9.6,
+    "reviewCount": 380000,
+    "genre": [
+      "أكشن وتصدي (Parry)",
+      "ساموراي ونينجا",
+      "تحدي",
+      "سولز لايك"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/library_hero.jpg",
+    "releaseYear": "2019",
+    "developer": "FromSoftware / Activision",
+    "description": "الفائزة بجائزة لعبة العام (GOTY 2019). تحكم في الذئب ذي الذراع الاصطناعية وانتقم من أعدائك لحماية سيدك الشاب في عصر سينغوكو الياباني مع أسرع وأدق نظام تصدي بالسيف في الألعاب.",
+    "features": [
+      "نظام صمود وتصدي سيوف (Deflect/Parry) فائق الدقة والرضا",
+      "ذراع آلية بها خطاف تسلق وشوريكين ومفرقعات نارية وأدوات تخفي",
+      "تحدي زعماء يختبر مهارة وتوقيت اللاعب دون الاعتماد على رفع اللفلات",
+      "أجواء يابانية تاريخية ساحرة ممزوجة بأساطير التنانين والخلود"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8 / 10 (64-bit)",
+      "cpu": "Intel Core i3-2100 / AMD FX-6300",
+      "gpu": "Nvidia GeForce GTX 760 / AMD Radeon HD 7950",
+      "ram": "4 جيجابايت RAM",
+      "storage": "25 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-6600K / AMD Ryzen 5 1400",
+      "gpu": "Nvidia GeForce GTX 970 / AMD Radeon RX 570",
+      "ram": "8 جيجابايت RAM",
+      "storage": "25 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "elden-ring",
+      "ghost-of-tsushima",
+      "dark-souls-3"
+    ],
+    "trailerOrGameplayNote": "أعظم نظام قتال سيوف ثنائي تم ابتكاره في تاريخ الألعاب.",
+    "tags": [
+      "سيكيرو",
+      "نينجا",
+      "باري",
+      "ساموراي",
+      "صعوبة",
+      "سيوف",
+      "زعماء"
+    ]
+  },
+  {
+    "id": "bloodborne",
+    "title": "بلودبورن",
+    "titleEn": "Bloodborne",
+    "rating": 9.7,
+    "reviewCount": 390000,
+    "genre": [
+      "فانتازيا قوطية",
+      "رعب لافكرافتي",
+      "سولز لايك",
+      "أكشن"
+    ],
+    "category": [
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r7f.jpg",
+    "backdropImage": "https://images.igdb.com/igdb/image/upload/t_1080p/co1r7f.jpg",
+    "releaseYear": "2015",
+    "developer": "FromSoftware / Sony",
+    "description": "مدينة يارنام القوطية الملعونة التي يجتاحها وباء يحول سكانها إلى وحوش مرعبة. بصفتك صائداً، تقدم في شوارعها المظلمة واكتشف أسرار كائنات الآلهة الكونية القديمة بأسلوب قتال سريع وهجومي.",
+    "features": [
+      "أسلحة حيل متحولة (Trick Weapons) تتحول بين شكلين في خضم المعركة",
+      "نظام استعادة الصحة بالهجوم السريع الفوري تشجيعاً للشجاعة",
+      "أجواء قوطية ورعب كوني لافكرافتي لا مثيل لها في أي لعبة أخرى",
+      "حصرية أيقونية تعتبرها الجماهير أفضل حصرية في تاريخ بلايستيشن 4"
+    ],
+    "minRequirements": {
+      "os": "PlayStation 4 / PlayStation 5",
+      "cpu": "مخصص لمنصة بلايستيشن",
+      "gpu": "مخصص لمنصة بلايستيشن",
+      "ram": "8 جيجابايت موحدة",
+      "storage": "41 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "PlayStation 5 (تعمل بالتوافق)",
+      "cpu": "مخصص لمنصة بلايستيشن",
+      "gpu": "مخصص لمنصة بلايستيشن",
+      "ram": "16 جيجابايت موحدة",
+      "storage": "41 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "elden-ring",
+      "dark-souls-3",
+      "sekiro"
+    ],
+    "trailerOrGameplayNote": "التحفة القوطية الخالدة التي يطالب العالم بنسخة حاسوب لها.",
+    "tags": [
+      "بلودبورن",
+      "صياد",
+      "يارنام",
+      "رعب",
+      "سولز",
+      "سريع",
+      "دم",
+      "بلايستيشن"
+    ]
+  },
+  {
+    "id": "skyrim",
+    "title": "ذا إلدور سكرولز 5: سكايرم",
+    "titleEn": "The Elder Scrolls V: Skyrim Special Edition",
+    "rating": 9.5,
+    "reviewCount": 820000,
+    "genre": [
+      "عالم مفتوح",
+      "فانتازيا وتنانين",
+      "RPG أسطوري",
+      "حرية مطلقة"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/489830/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/489830/library_hero.jpg",
+    "releaseYear": "2011 (النسخة الخاصة 2016)",
+    "developer": "Bethesda Game Studios",
+    "description": "أنت الدوفاكين (مولود التنين)، الأمل الوحيد لإنقاذ إقليم سكايرم من تنين العالم ألدوين. حرية غير مقيدة لتذهب أينما تشاء وتصبح ما تريد: ساحر، محارب، لص، أو قاتل مأجور مع آلاف المودات المجانية.",
+    "features": [
+      "حرية استكشاف حقيقية وعالم يعيش ويتنفس بآلاف المغامرات",
+      "صرخات التنين (Dragon Shouts) الفريدة بقوى سحرية خارقة",
+      "أكبر مجتمع تعديلات (Mods) في تاريخ الألعاب على الحاسوب",
+      "تعمل بسلاسة حتى على اللابتوبات المتوسطة والأجهزة القديمة"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8.1 / 10 (64-bit)",
+      "cpu": "Intel i5-750 / AMD Phenom II X4-945",
+      "gpu": "Nvidia GTX 470 1GB / AMD HD 7870 2GB",
+      "ram": "8 جيجابايت RAM",
+      "storage": "12 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel i5-2400 / AMD FX-8320",
+      "gpu": "Nvidia GTX 780 3GB / AMD R9 290 4GB",
+      "ram": "8 جيجابايت RAM",
+      "storage": "12 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "witcher-3",
+      "elden-ring"
+    ],
+    "trailerOrGameplayNote": "أسطورة تقمص الأدوار التي يواصل ملايين اللاعبين لعبها منذ 2011.",
+    "tags": [
+      "سكايرم",
+      "تنانين",
+      "سحر",
+      "عالم مفتوح",
+      "مودات",
+      "سيوف",
+      "دوفاكين"
+    ]
+  },
+  {
+    "id": "spiderman-remastered",
+    "title": "مارفلز سبايدرمان ريماسترد",
+    "titleEn": "Marvel's Spider-Man Remastered",
+    "rating": 9.3,
+    "reviewCount": 290000,
+    "genre": [
+      "أبطال خارقين",
+      "عالم مفتوح",
+      "أكشن وتأرجح",
+      "قصة سينمائية"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817070/library_hero.jpg",
+    "releaseYear": "2020 (الحاسوب 2022)",
+    "developer": "Insomniac Games / Sony",
+    "description": "عش تجربة بيتر باركر الخبير في حماية مدينة نيويورك الشاسعة. تأرجح بسلاسة بين ناطحات السحاب وحارب أشهر أشرار مارفل بنظام قتال ديناميكي وأكروباتي ساحر.",
+    "features": [
+      "أفضل وأمتع شعور تأرجح بالحبال وشبكات العنكبوت في تاريخ الألعاب",
+      "قصة درامية تمس حياة بيتر باركر وشخصيات مارفل المحبوبة",
+      "دعم كامل لتقنيات DLSS 3 وتتبع الأشعة ودراع DualSense على الحاسوب",
+      "عشرات البدلات القابلة للفتح والترقية بقدرات قتالية خاصة"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i3-4160 / AMD FX-6300",
+      "gpu": "Nvidia GTX 950 / AMD Radeon RX 470",
+      "ram": "8 جيجابايت RAM",
+      "storage": "75 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-4670 / AMD Ryzen 5 1600",
+      "gpu": "Nvidia GTX 1060 6GB / AMD Radeon RX 580",
+      "ram": "16 جيجابايت RAM",
+      "storage": "75 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "god-of-war",
+      "ghost-of-tsushima"
+    ],
+    "trailerOrGameplayNote": "أفضل لعبة بطل خارق تجمع بين المتعة الحركية والقصة المؤثرة.",
+    "tags": [
+      "سبايدرمان",
+      "مارفل",
+      "نيويورك",
+      "تأرجح",
+      "عالم مفتوح",
+      "أكشن",
+      "أبطال"
+    ]
+  },
+  {
+    "id": "horizon-forbidden-west",
+    "title": "هورايزون: الغرب المحظور",
+    "titleEn": "Horizon Forbidden West",
+    "rating": 9.2,
+    "reviewCount": 260000,
+    "genre": [
+      "عالم مفتوح",
+      "خيال علمي وروبوتات",
+      "أكشن مغامرات",
+      "قصة"
+    ],
+    "category": [
+      "ps5",
+      "pc",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/library_hero.jpg",
+    "releaseYear": "2022 (الحاسوب 2024)",
+    "developer": "Guerrilla Games / Sony",
+    "description": "انضم إلى إيلوي في رحلتها نحو الغرب المحظور لإنقاذ كوكب الأرض من طاعون بيولوجي فتاك. واجه روبوتات وحشية ضخمة واستكشف شواطئ وغابات وسواحل سان فرانسيسكو الغارقة تحت الماء.",
+    "features": [
+      "واحدة من أكثر الألعاب إبهاراً في التفاصيل الرسومية وتصاميم البيئات",
+      "قتال استراتيجي بالقوس وتفكيك دروع الروبوتات الضخمة قطعة تلو الأخرى",
+      "إمكانية الغوص الحر تحت الماء واستكشاف أعماق المحيطات والأطلال",
+      "أجهزة طيران وركوب روبوتات متوحشة للتنقل السريع في العالم"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i3-8100 / AMD Ryzen 3 1300X",
+      "gpu": "Nvidia GeForce GTX 1650 / AMD Radeon RX 5500 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "150 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-8600 / AMD Ryzen 5 3600",
+      "gpu": "Nvidia RTX 3060 / AMD Radeon RX 5700",
+      "ram": "16 جيجابايت RAM",
+      "storage": "150 جيجابايت SSD فائقة السرعة"
+    },
+    "similarGameIds": [
+      "god-of-war",
+      "witcher-3",
+      "ghost-of-tsushima"
+    ],
+    "trailerOrGameplayNote": "قمة إبداع شركة سوني في رسوميات الطبيعة وعوالم الخيال العلمي.",
+    "tags": [
+      "إيلوي",
+      "روبوتات",
+      "قوس",
+      "عالم مفتوح",
+      "خيال علمي",
+      "طبيعة",
+      "غوص"
+    ]
+  },
+  {
+    "id": "cs2",
+    "title": "كاونتر سترايك 2",
+    "titleEn": "Counter-Strike 2",
+    "rating": 9.3,
+    "reviewCount": 3820000,
+    "genre": [
+      "تصويب تكتيكي",
+      "أونلاين تنافسي",
+      "مجانية",
+      "رياضات إلكترونية"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/library_hero.jpg",
+    "releaseYear": "2023 (تحديث Source 2 الثوري)",
+    "developer": "Valve",
+    "description": "لعبة الشوتر التكتيكية الأولى في العالم 5 ضد 5. تقدم قنابل دخان تفاعلية ديناميكية ونظام تحديث فرعي (Sub-tick) ورسوميات محدثة كلياً على محرك سورس 2 مع احتفاظها بدقة إطلاق النار الكلاسيكية.",
+    "features": [
+      "مجانية بالكامل للتحميل على Steam مع اقتصاد سوق أسلحة بمليارات الدولارات",
+      "دخان قنابل حجمي واقعي يتفاعل مع الطلقات والقنابل الضوئية",
+      "نظام تصنيف تنافسي دولي وإقليمي (CS Rating) متطور",
+      "تعمل بسلاسة بمعدل إطارات مرتفع على معظم أجهزة الحاسوب"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5 750 / معالج رباعي النواة",
+      "gpu": "كرت شاشة 1GB متوافق مع Shader Model 5.0",
+      "ram": "8 جيجابايت RAM",
+      "storage": "85 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-10400 / AMD Ryzen 5 3600",
+      "gpu": "Nvidia GTX 1660 Super / AMD Radeon RX 5600 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "85 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "valorant",
+      "apex-legends",
+      "rainbow-six-siege"
+    ],
+    "trailerOrGameplayNote": "أكثر لعبة لعباً بشكل يومي على منصة ستيم بملايين اللاعبين المتزامنين.",
+    "tags": [
+      "شوتر",
+      "مجانية",
+      "أونلاين",
+      "كاونتر",
+      "سورس",
+      "قنابل",
+      "تنافسي",
+      "cs2"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "apex-legends",
+    "title": "أبيكس ليجندز",
+    "titleEn": "Apex Legends",
+    "rating": 8.9,
+    "reviewCount": 940000,
+    "genre": [
+      "باتل رويال",
+      "تصويب منظور أول",
+      "أونلاين جماعي",
+      "حركي وسريع"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/library_hero.jpg",
+    "releaseYear": "2019 (مستمرة بمواسم متجددة)",
+    "developer": "Respawn Entertainment / EA",
+    "description": "لعبة باتل رويال جماعية مجانية تتميز بحركة فائقة السرعة وانزلاق سلس وقدرات أبطال خاصة لكل أسطورة. شكل فريقاً من ثلاثة لاعبين وتنافسوا في ساحات أوتلاندز لتصبحوا أبطال القمة.",
+    "features": [
+      "مجانية بالكامل للتحميل مع دعم اللعب المشترك بين المنصات",
+      "نظام تنبيه ذكي وتواصل تكتيكي بدون مايكروفون (Smart Ping)",
+      "تحديثات موسمية مستمرة تضيف أساطير وأسلحة وخرائط جديدة",
+      "حركات انزلاق وتسلق وقفز فريدة وسريعة جداً"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i3-6300 / AMD FX-4350",
+      "gpu": "Nvidia GeForce GT 640 / Radeon HD 7730",
+      "ram": "6 جيجابايت RAM",
+      "storage": "75 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel i5 3570K / Ryzen 5",
+      "gpu": "Nvidia GeForce GTX 970 / AMD Radeon R9 290",
+      "ram": "8 أو 16 جيجابايت RAM",
+      "storage": "75 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "cs2",
+      "fortnite",
+      "warzone"
+    ],
+    "trailerOrGameplayNote": "لعبة الحماس الجماعي التنافسي وسرعة الحركة الأولى مع الأصدقاء.",
+    "tags": [
+      "أونلاين",
+      "مجانية",
+      "باتل رويال",
+      "أصدقاء",
+      "شوتر",
+      "حركات",
+      "أبيكس"
+    ]
+  },
+  {
+    "id": "valorant",
+    "title": "فالورانت",
+    "titleEn": "Valorant",
+    "rating": 9.1,
+    "reviewCount": 1500000,
+    "genre": [
+      "تصويب تكتيكي",
+      "قدرات أبطال",
+      "مجانية",
+      "رياضات إلكترونية"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2mvt.jpg",
+    "backdropImage": "https://images.igdb.com/igdb/image/upload/t_1080p/co2mvt.jpg",
+    "releaseYear": "2020 (نسخة الكونسول 2024)",
+    "developer": "Riot Games",
+    "description": "شوتر تكتيكي تنافسي 5 ضد 5 يجمع بين دقة الرمي والطلقات النارية مع قدرات العملاء السحرية والتكتيكية. تم تصميم محرك اللعبة للعمل بأعلى فريمات حتى على الحواسيب واللابتوبات الاقتصادية.",
+    "features": [
+      "خوادم متطورة بمعدل 128 Tickrate لضمان أدق استجابة للرصاص",
+      "مجانية 100% مع تشكيلة واسعة ومتجددة من العملاء والخرائط",
+      "نظام مكافحة غش متقدم (Riot Vanguard) لأقصى درجات العدالة",
+      "استهلاك اقتصادي جداً للموارد يعمل على أجهزة المعالجات المدمجة"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core 2 Duo E8400 / AMD Athlon 200GE",
+      "gpu": "Intel HD 4000 / Radeon R5 200",
+      "ram": "4 جيجابايت RAM",
+      "storage": "30 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel i3-4150 / AMD Ryzen 3 1200",
+      "gpu": "GeForce GT 730 / Radeon R7 240",
+      "ram": "8 جيجابايت RAM",
+      "storage": "30 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "cs2",
+      "overwatch-2",
+      "apex-legends"
+    ],
+    "trailerOrGameplayNote": "أحد أشهر العناوين التنافسية للرياضات الإلكترونية في العالم.",
+    "tags": [
+      "فالورانت",
+      "رايوت",
+      "شوتر",
+      "مجانية",
+      "تكتيك",
+      "أبطال",
+      "أجهزة ضعيفة"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "warzone",
+    "title": "كول أوف ديوتي: وارزون",
+    "titleEn": "Call of Duty: Warzone",
+    "rating": 8.7,
+    "reviewCount": 1800000,
+    "genre": [
+      "باتل رويال",
+      "تصويب حربي",
+      "أكشن جماعي",
+      "مجانية"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1938090/library_hero.jpg",
+    "releaseYear": "2020 (تحديثات Modern Warfare III)",
+    "developer": "Infinity Ward / Raven / Activision",
+    "description": "ساحة المعركة الضخمة المجانية من سلسلة كول أوف ديوتي. اهبط في أورزيكستان أو جزيرة البعث مع حتى 150 لاعباً، وابحث عن المكافآت والأسلحة وخصص أسلحتك في قتال ناري عالي الوتيرة.",
+    "features": [
+      "فيزياء إطلاق نار كود المحبوبة وسرعة التبديل والانزلاق",
+      "نظام جولاج (Gulag) الفريد للمبارزة 1 ضد 1 والعودة للحياة",
+      "ترسانة أسلحة واقعية قابلة للتخصيص بأدق المرفقات والمناظير",
+      "دعم اللعب المشترك الكامل بين الكمبيوتر وبلايستيشن وإكسبوكس"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-6600 / AMD Ryzen 5 1400",
+      "gpu": "Nvidia GeForce GTX 960 / AMD Radeon RX 470",
+      "ram": "8 جيجابايت RAM",
+      "storage": "125 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-8700K / AMD Ryzen 7 2700X",
+      "gpu": "Nvidia RTX 3060 / AMD Radeon RX 6600 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "125 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "apex-legends",
+      "pubg",
+      "cs2"
+    ],
+    "trailerOrGameplayNote": "تجربة الشوتر الحربية الأكثر إثارة وتنافساً للعب مع الأصدقاء.",
+    "tags": [
+      "كود",
+      "وارزون",
+      "call of duty",
+      "حرب",
+      "شوتر",
+      "مجانية",
+      "أسلحة",
+      "باتل رويال"
+    ]
+  },
+  {
+    "id": "fortnite",
+    "title": "فورتنايت",
+    "titleEn": "Fortnite",
+    "rating": 8.8,
+    "reviewCount": 2900000,
+    "genre": [
+      "باتل رويال",
+      "بناء وإطلاق نار",
+      "عالم مفتوح",
+      "مجانية"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://images.igdb.com/igdb/image/upload/t_cover_big/cocqrm.jpg",
+    "backdropImage": "https://images.igdb.com/igdb/image/upload/t_1080p/cocqrm.jpg",
+    "releaseYear": "2017 (الفصول الحديثة مع UE5)",
+    "developer": "Epic Games",
+    "description": "الظاهرة العالمية الكبرى في عالم الألعاب. هبوط 100 لاعب في جزيرة متغيرة باستمرار مع خياري اللعب بالبناء أو طور \"انعدام البناء\" (Zero Build)، إلى جانب فعاليات موسيقية وعوالم ليجو ومودات مذهلة.",
+    "features": [
+      "طور Zero Build لمحبي إطلاق النار النقي بدون بناء جدران",
+      "تعاونات ضخمة مع مارفل، دراغون بول، أنمي، وأشهر المشاهير",
+      "رسوميات خرافية تدعم تقنيات Nanite و Lumen ومحرك UE5.4",
+      "طور أداء خاص (Performance Mode) يشغل اللعبة على أي لابتوب قديم"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i3-3225 3.3 GHz",
+      "gpu": "Intel HD 4000 / AMD Radeon Vega 8",
+      "ram": "8 جيجابايت RAM",
+      "storage": "35 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-8700 / AMD Ryzen 7 3700x",
+      "gpu": "Nvidia GTX 1660 / AMD Radeon RX 5600 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "35 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "apex-legends",
+      "warzone",
+      "rocket-league"
+    ],
+    "trailerOrGameplayNote": "أكبر منصة ترفيهية تفاعلية تجمع الملايين يومياً.",
+    "tags": [
+      "فورتنايت",
+      "باتل رويال",
+      "مجانية",
+      "بناء",
+      "أصدقاء",
+      "سكنات",
+      "حفلات"
+    ]
+  },
+  {
+    "id": "pubg",
+    "title": "ببجي: ساحات معارك باتل جراوندز",
+    "titleEn": "PUBG: BATTLEGROUNDS",
+    "rating": 8.6,
+    "reviewCount": 2300000,
+    "genre": [
+      "باتل رويال تكتيكي",
+      "بقاء وإطلاق نار",
+      "عسكري",
+      "مجانية"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/library_hero.jpg",
+    "releaseYear": "2017 (مجانية بالكامل)",
+    "developer": "KRAFTON, Inc.",
+    "description": "اللعبة التي أطلقت ثورة الباتل رويال في العالم. اهبط بالمظلة في خرائط شاسعة كإرانغل وميرامار، ابحث عن عتادك، وتنافس ضد 99 لاعباً لتكون الناجي الأخير ووجبة عشاء الدجاج الرابحة.",
+    "features": [
+      "فيزياء مقذوفات واقعية ترتكز على هبوط الرصاصة وسرعة الرياح",
+      "خرائط متنوعة من الصحاري القاحلة إلى الغابات والمدن الثلجية",
+      "أصبحت مجانية بالكامل للعب على جميع أجهزة الحاسوب والكونسول",
+      "تكتيكات قيادة مركبات واستخدام أجهزة مراقبة وتكتيكات دفاعية"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-4430 / AMD FX-6300",
+      "gpu": "Nvidia GeForce GTX 960 2GB / AMD Radeon R7 370",
+      "ram": "8 جيجابايت RAM",
+      "storage": "50 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-6600K / AMD Ryzen 5 1600",
+      "gpu": "Nvidia GeForce GTX 1060 3GB / AMD Radeon RX 580",
+      "ram": "16 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "warzone",
+      "apex-legends",
+      "cs2"
+    ],
+    "trailerOrGameplayNote": "تجربة الباتل رويال الواقعية الأصلية ذات الشعبية الكاسحة.",
+    "tags": [
+      "ببجي",
+      "pubg",
+      "باتل رويال",
+      "إرانغل",
+      "شوتر",
+      "مجانية",
+      "سلاح"
+    ]
+  },
+  {
+    "id": "rainbow-six-siege",
+    "title": "توم كلانسيز رينبو 6 سيج",
+    "titleEn": "Tom Clancy's Rainbow Six Siege",
+    "rating": 9,
+    "reviewCount": 1150000,
+    "genre": [
+      "تصويب تكتيكي واقتحام",
+      "تدمير بيئي",
+      "أونلاين 5v5",
+      "استراتيجية"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/library_hero.jpg",
+    "releaseYear": "2015 (مستمرة مع الموسم العاشر)",
+    "developer": "Ubisoft Montreal",
+    "description": "أعظم شوتر تكتيكي يعتمد على الاقتحام وتدمير البيئة. يتواجه فريقان: مهاجمون ومدافعون، حيث يمكن تفجير الجدران والأرضيات والأسقف لفتح زوايا رؤية ومفاجأة العدو بأدوات تكنولوجية فريدة.",
+    "features": [
+      "نظام تدمير فيزيائي واقعي للجدران والحواجز لا يوجد له مثيل",
+      "أكثر من 70 عميلاً مميزاً بقدرات اقتحام ودفاع متقدمة",
+      "أهمية قصوى للصوتيات وتحديد خطوات الأعداء والدرونز الاستطلاعية",
+      "لعبة بطولات عالمية وتحديثات فصلية مستمرة بدون توقف"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i3 560 / AMD Phenom II X4 945",
+      "gpu": "Nvidia GeForce GTX 460 / AMD Radeon HD 5870",
+      "ram": "6 جيجابايت RAM",
+      "storage": "85 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-2500K / AMD FX-8120",
+      "gpu": "Nvidia GeForce GTX 960 / AMD Radeon R9 280X",
+      "ram": "8 جيجابايت RAM",
+      "storage": "85 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "cs2",
+      "valorant"
+    ],
+    "trailerOrGameplayNote": "اللعبة التكتيكية الأكثر ذكاءً وتدميراً في عالم التصويب.",
+    "tags": [
+      "رينبو",
+      "سيج",
+      "يوبيسوفت",
+      "اقتحام",
+      "تكتيك",
+      "تدمير",
+      "شوتر",
+      "5v5"
+    ]
+  },
+  {
+    "id": "overwatch-2",
+    "title": "أوفر ووتش 2",
+    "titleEn": "Overwatch 2",
+    "rating": 8.4,
+    "reviewCount": 750000,
+    "genre": [
+      "تصويب أبطال (Hero Shooter)",
+      "أكشن جماعي",
+      "مجانية",
+      "خيال علمي"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2357570/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2357570/library_hero.jpg",
+    "releaseYear": "2022",
+    "developer": "Blizzard Entertainment",
+    "description": "شوتر الأبطال الملون والمبهج 5 ضد 5 من بليزارد. اختر من بين أكثر من 40 بطلاً في أدوار التانك، الهجوم والدعم وتنافس مع فريقك لدفع العربات أو السيطرة على النقاط الاستراتيجية في مدن حول العالم.",
+    "features": [
+      "مجانية بالكامل للتحميل لجميع اللاعبين على جميع المنصات",
+      "تنوع هائل في الشخصيات والقدرات الخارقة (Ultimate Abilities)",
+      "سريعة وتناسب اللعب مع الأصدقاء بتكامل الأدوار التعاونية",
+      "محسنة بشكل مذهل للعمل على عتاد الحواسيب واللابتوبات الضعيفة"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i3 / AMD Phenom X3 8650",
+      "gpu": "Nvidia GeForce GTX 600 series / AMD Radeon HD 7000",
+      "ram": "6 جيجابايت RAM",
+      "storage": "50 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7 / AMD Ryzen 5",
+      "gpu": "Nvidia GeForce GTX 1060 / AMD Radeon R9 380",
+      "ram": "8 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "valorant",
+      "apex-legends"
+    ],
+    "trailerOrGameplayNote": "تجربة شوتر مرحة وحيوية غنية بالشخصيات والقدرات السحرية.",
+    "tags": [
+      "أوفرووتش",
+      "أبطال",
+      "بليزارد",
+      "مجانية",
+      "تانك",
+      "هيلر",
+      "أصدقاء"
+    ]
+  },
+  {
+    "id": "ea-sports-fc-24",
+    "title": "إي إيه سبورتس إف سي 24 (فيفا)",
+    "titleEn": "EA SPORTS FC 24",
+    "rating": 8.5,
+    "reviewCount": 620000,
+    "genre": [
+      "كرة قدم",
+      "رياضة ومحاكاة",
+      "أونلاين تنافسي",
+      "ألتميت تيم"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2195250/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2195250/library_hero.jpg",
+    "releaseYear": "2023 (والتحديثات المستمرة)",
+    "developer": "EA Canada / Electronic Arts",
+    "description": "عصر جديد للعبة كرة القدم الأكثر شعبية في العالم بعد انفصالها عن علامة فيفا. تضم تقنية HyperMotionV الحركية وأكثر من 19,000 لاعب مرخص و700 فريق و30 دورياً رسمياً حول العالم.",
+    "features": [
+      "طور الألتميت تيم (Ultimate Team) الشهير لبناء فريق أحلامك",
+      "حركات واقعية تماماً مقتبسة من مباريات دوري أبطال أوروبا الحقيقية",
+      "طور المهنة للمدرب واللاعب وتطوير المواهب الكروية الشابة",
+      "دعم اللعب المشترك (Cross-play) بين الحاسوب ومنصات الجيل الجديد"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-6600K / AMD Ryzen 5 1600",
+      "gpu": "Nvidia GeForce GTX 1050 Ti 4GB / AMD Radeon RX 570",
+      "ram": "8 جيجابايت RAM",
+      "storage": "100 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-6700 / AMD Ryzen 7 2700X",
+      "gpu": "Nvidia GeForce GTX 1660 / AMD Radeon RX 5600 XT",
+      "ram": "12 جيجابايت RAM",
+      "storage": "100 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "rocket-league",
+      "forza-horizon-5"
+    ],
+    "trailerOrGameplayNote": "لعبة كرة القدم الأولى التي لا يخلو منها أي بيت أو مجلس جيمنج.",
+    "tags": [
+      "فيفا",
+      "كرة قدم",
+      "fc 24",
+      "ألتميت تيم",
+      "رياضة",
+      "دوري",
+      "أهداف"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "forza-horizon-5",
+    "title": "فورزا هورايزون 5",
+    "titleEn": "Forza Horizon 5",
+    "rating": 9.6,
+    "reviewCount": 480000,
+    "genre": [
+      "سباق سيارات",
+      "عالم مفتوح",
+      "رسوميات خارقة",
+      "أونلاين"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/library_hero.jpg",
+    "releaseYear": "2021",
+    "developer": "Playground Games / Xbox Game Studios",
+    "description": "أفضل وأجمل لعبة سباق سيارات في التاريخ. انطلق في مهرجان هورايزون المكسيكي الساحر عبر الأدغال والصحاري والشواطئ وبراكين نشطة مع مئات من أندر وأسرع سيارات السوبر كار في العالم.",
+    "features": [
+      "أكثر من 800 سيارة مرخصة بدقة فيزيائية وتفاصيل داخلية مذهلة",
+      "خريطة المكسيك التفاعلية مع عواصف رملية وأعاصير مدارية موسمية",
+      "رسوميات وإضاءات شمس وأصوات محركات تعتبر المعيار الأعلى في الصناعة",
+      "أطوار سباقات وتحديات وتعديلات وتجمعات سيارات لا نهائية عبر الشبكة"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel i5-4460 / AMD Ryzen 3 1200",
+      "gpu": "Nvidia GTX 970 / AMD Radeon RX 470",
+      "ram": "8 جيجابايت RAM",
+      "storage": "110 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel i7-10700K / AMD Ryzen 7 3800XT",
+      "gpu": "Nvidia RTX 2070 / AMD Radeon RX 6700 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "110 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "ea-sports-fc-24",
+      "rocket-league",
+      "gta-vi"
+    ],
+    "trailerOrGameplayNote": "تجربة قيادة خيالية ورسومات تضاهي الواقع تماماً.",
+    "tags": [
+      "فورزا",
+      "سيارات",
+      "سباق",
+      "دريفت",
+      "المكسيك",
+      "سوبركار",
+      "عالم مفتوح"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "rocket-league",
+    "title": "روكيت ليج",
+    "titleEn": "Rocket League",
+    "rating": 9.2,
+    "reviewCount": 1600000,
+    "genre": [
+      "كرة قدم بالسيارات",
+      "أكشن وفيزياء",
+      "مجانية",
+      "رياضات إلكترونية"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252950/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252950/library_hero.jpg",
+    "releaseYear": "2015 (مجانية على إيبك جيمز)",
+    "developer": "Psyonix",
+    "description": "الفكرة العبقرية التي جمعت بين كرة القدم وسيارات الصواريخ الطائرة. تسابق واصعد على الجدران وطِر في الهواء لضرب الكرة وتسجيل أهداف استعراضية خيالية في مباريات سريعة وحماسية.",
+    "features": [
+      "مجانية 100% وتدعم اللعب الجماعي على نفس الشاشة وعبر الشبكة",
+      "فيزياء طيران وحركة صلبة ومتقنة تتطلب مهارة عالية للسيطرة الكاملة",
+      "تخصيص سيارات بالملايين من العجلات والتعزيزات الصاروخية والأصوات",
+      "تعمل على أضعف المعالجات واللابتوبات بدون أي تقطيع"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8.1 / 10 (64-bit)",
+      "cpu": "معالج ثنائي النواة 2.5 GHz",
+      "gpu": "Nvidia GeForce 760 / AMD Radeon R7 260X",
+      "ram": "4 جيجابايت RAM",
+      "storage": "20 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "معالج رباعي النواة 3.0+ GHz",
+      "gpu": "Nvidia GeForce GTX 1060 / AMD Radeon RX 470",
+      "ram": "8 جيجابايت RAM",
+      "storage": "20 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "ea-sports-fc-24",
+      "forza-horizon-5"
+    ],
+    "trailerOrGameplayNote": "إدمان خالص وواحدة من أكثر الألعاب إمتاعاً مع الأصدقاء.",
+    "tags": [
+      "روكيت ليج",
+      "سيارات",
+      "كرة قدم",
+      "مجانية",
+      "طيران",
+      "أجهزة ضعيفة"
+    ]
+  },
+  {
+    "id": "assetto-corsa",
+    "title": "أسيتو كورسا",
+    "titleEn": "Assetto Corsa",
+    "rating": 9.1,
+    "reviewCount": 190000,
+    "genre": [
+      "محاكاة قيادة واقعية",
+      "مودات وتعديلات",
+      "سباقات وحلبات",
+      "دريفت"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/244210/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/244210/library_hero.jpg",
+    "releaseYear": "2014",
+    "developer": "Kunos Simulazioni",
+    "description": "ملك محاكاة القيادة الاحترافية على الحاسوب ورمز مجتمع الهجولة والدريفت والسباقات الواقعية بفضل الآلاف من مودات السيارات والشوارع الحقيقية الممسوحة بالليزر.",
+    "features": [
+      "أدق فيزياء إطارات واحتكاك وتفاعل مع الدركسيون ومقود القيادة",
+      "أضخم مجتمع مودات لتشغيل سيارات الخليج وطرقات حقيقية مثل شوتوكو",
+      "حلبات رسمية عالمية ممسوحة بالليزر لتحقيق دقة بالسنتيمتر",
+      "خفيفة جداً وسلسة وتعمل على مختلف الأجهزة المتوسطة"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8 / 10",
+      "cpu": "AMD Athlon X2 2.8 GHZ / Intel Core 2 Duo 2.4 GHZ",
+      "gpu": "DirectX 10.1 (GeForce GT 460 / Radeon HD 6450)",
+      "ram": "4 جيجابايت RAM",
+      "storage": "30 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "AMD معالج سداسي الأنوية / Intel معالج رباعي الأنوية",
+      "gpu": "GeForce GTX 970 / Radeon 290x",
+      "ram": "8 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "forza-horizon-5",
+      "euro-truck-2"
+    ],
+    "trailerOrGameplayNote": "الخيار الأول لعشاق مقاود القيادة والواقعية والمودات.",
+    "tags": [
+      "محاكاة",
+      "دريفت",
+      "دركسيون",
+      "هجولة",
+      "مودات",
+      "سيارات",
+      "واقعية"
+    ]
+  },
+  {
+    "id": "euro-truck-2",
+    "title": "محاكي الشاحنات الأوروبي 2",
+    "titleEn": "Euro Truck Simulator 2",
+    "rating": 9.7,
+    "reviewCount": 650000,
+    "genre": [
+      "محاكاة وهدوء",
+      "سفر وقيادة",
+      "إدارة شركات",
+      "عالم مفتوح"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/227300/library_hero.jpg",
+    "releaseYear": "2012 (تحديثات وتوسعات مستمرة)",
+    "developer": "SCS Software",
+    "description": "تجربة الاسترخاء والقيادة الأشهر في العالم. سافر عبر مدن ودول أوروبا كملك للطرقات، انقل البضائع المهمة، واستمع للراديو الحقيقي وابنِ إمبراطوريتك اللوجستية الخاصة.",
+    "features": [
+      "تجربة تأملية هادئة رائعة للاسترخاء بعد يوم عمل شاق",
+      "عشرات الشاحنات المرخصة من كبرى الشركات مثل فولفو وميرسيدس وسكانيا",
+      "خريطة ضخمة تشمل بريطانيا، ألمانيا، إيطاليا، فرنسا وإسبانيا",
+      "طور اللعب التعاوني (Convoy) للسفر في قوافل ممتعة مع أصدقائك"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8.1 / 10 (64-bit)",
+      "cpu": "معالج ثنائي النواة 2.4 GHz",
+      "gpu": "GeForce GTS 450-class / Intel HD 4000",
+      "ram": "4 جيجابايت RAM",
+      "storage": "25 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "معالج رباعي النواة 3.0 GHz",
+      "gpu": "GeForce GTX 1660 / Radeon RX 590",
+      "ram": "8 جيجابايت RAM",
+      "storage": "25 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "assetto-corsa",
+      "forza-horizon-5"
+    ],
+    "trailerOrGameplayNote": "واحدة من أعلى الألعاب تقييماً في تاريخ منصة ستيم.",
+    "tags": [
+      "شاحنات",
+      "محاكاة",
+      "سفر",
+      "أوروبا",
+      "استرخاء",
+      "أجهزة ضعيفة",
+      "هدوء"
+    ]
+  },
+  {
+    "id": "need-for-speed-unbound",
+    "title": "نيد فور سبيد أنباوند",
+    "titleEn": "Need for Speed Unbound",
+    "rating": 8.4,
+    "reviewCount": 140000,
+    "genre": [
+      "سباق شوارع",
+      "مطاردات شرطة",
+      "أنمي وجرافيتي",
+      "تعديل سيارات"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1846380/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1846380/library_hero.jpg",
+    "releaseYear": "2022",
+    "developer": "Criterion Games / EA",
+    "description": "سباقات شوارع ليلية مشتعلة تمزج بين السيارات الواقعية ثلاثية الأبعاد والمؤثرات البصرية المستوحاة من رسومات الجرافيتي والأنمي. اهرب من أشرس مطاردات الشرطة في مدينة ليك شور.",
+    "features": [
+      "أسلوب بصري ثوري يدمج الجرافيتي والأنمي مع دخان الإطارات والقفزات",
+      "مطاردات شرطة مكثفة بمستويات حرارة تدريجية ومروحيات وحواجز",
+      "تعديل عميق لهياكل السيارات والزوائد والطلاءات والنيون",
+      "موسيقى تصويرية عصرية لموسيقى الهيب هوب والفخامة الحضرية"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-8600 / AMD Ryzen 5 2600",
+      "gpu": "Nvidia GeForce GTX 1050 Ti (4GB) / AMD Radeon RX 570",
+      "ram": "8 جيجابايت RAM",
+      "storage": "50 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-8700 / AMD Ryzen 5 3600",
+      "gpu": "Nvidia GeForce RTX 2070 (8GB) / AMD Radeon RX 6700 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "forza-horizon-5",
+      "gta-vi"
+    ],
+    "trailerOrGameplayNote": "عودة هوية نيد فور سبيد الأصلية بلمسة فنية جريئة.",
+    "tags": [
+      "نيد فور سبيد",
+      "سباق",
+      "شرطة",
+      "تعديل",
+      "مطاردة",
+      "جرافيتي",
+      "سيارات"
+    ]
+  },
+  {
+    "id": "team-fortress-2",
+    "title": "تيم فورتريس 2",
+    "titleEn": "Team Fortress 2",
+    "rating": 9.4,
+    "reviewCount": 1100000,
+    "genre": [
+      "شوتر كرتوني كلاسيكي",
+      "أدوار وأبطال",
+      "مجانية",
+      "كوميديا"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/440/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/440/library_hero.jpg",
+    "releaseYear": "2007 (مجانية وأسطورية)",
+    "developer": "Valve",
+    "description": "أسطورة فالف الكلاسيكية التي ألهمت كل ألعاب شوتر الأبطال الحديثة. 9 شخصيات فريدة (الجاسوس، الطبيب، القناص، المهندس...) في معارك عبثية مضحكة مليئة بالقبعات والأسلحة المجنونة.",
+    "features": [
+      "مجانية بالكامل ومثالية للعب السريع والمرح مع الأصدقاء",
+      "تعمل على أي لابتوب أو حاسوب قديم بمعدل 100+ إطار في الثانية",
+      "شخصيات كوميدية بحوارات صوتية أصبحت ميمات خالدة على الإنترنت",
+      "سيرفرات مجتمعية وأطوار مخصصة لا تنتهي"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8.1 / 10",
+      "cpu": "معالج 1.7 GHz",
+      "gpu": "أي كرت شاشة 512MB أو كرت مدمج",
+      "ram": "1 جيجابايت RAM",
+      "storage": "15 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج ثنائي النواة 3.0 GHz",
+      "gpu": "Nvidia GeForce 8600 / ATI Radeon HD 2600",
+      "ram": "2 جيجابايت RAM",
+      "storage": "15 جيجابايت"
+    },
+    "similarGameIds": [
+      "overwatch-2",
+      "cs2"
+    ],
+    "trailerOrGameplayNote": "أيقونة الشوتر الخالدة التي لا تموت من شركة فالف.",
+    "tags": [
+      "فالف",
+      "قبعات",
+      "مجانية",
+      "جاسوس",
+      "أجهزة ضعيفة",
+      "شوتر",
+      "كوميديا"
+    ]
+  },
+  {
+    "id": "hollow-knight",
+    "title": "هولو نايت",
+    "titleEn": "Hollow Knight",
+    "rating": 9.7,
+    "reviewCount": 360000,
+    "genre": [
+      "ميترويدفينيا",
+      "أكشن ثنائي الأبعاد",
+      "فانتازيا حشرات",
+      "تحدي"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/library_hero.jpg",
+    "releaseYear": "2017",
+    "developer": "Team Cherry",
+    "description": "تحفة الميترويدفينيا الخالدة. انزل إلى مملكة هالونيست الغارقة في الظلام والخراب، واجه الوحوش الممسوسة، واكتشف أسراراً عتيقة بموسيقى كلاسيكية ساحرة ورسوم يدوية خلابة.",
+    "features": [
+      "عالم ضخم مترابط بالكامل مرسوم يدوياً بإتقان مدهش",
+      "أكثر من 150 عدواً فريداً و40 زعيماً ملحمياً يتطلبون مهارة عالية",
+      "موسيقى تصويرية آسرة للملحن كريستوفر لاركين",
+      "تعمل بسلاسة تامة على أضعف أجهزة اللابتوب والكمبيوتر المكتبي"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8 / 10 (64-bit)",
+      "cpu": "Intel Core 2 Duo E5200",
+      "gpu": "GeForce 9800GTX+ (512MB)",
+      "ram": "4 جيجابايت RAM",
+      "storage": "9 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5",
+      "gpu": "GeForce GTX 560",
+      "ram": "8 جيجابايت RAM",
+      "storage": "9 جيجابايت"
+    },
+    "similarGameIds": [
+      "dead-cells",
+      "celeste",
+      "hades"
+    ],
+    "trailerOrGameplayNote": "أعظم لعبة إندي ثنائية أبعاد في التاريخ.",
+    "tags": [
+      "ميترويدفينيا",
+      "إندي",
+      "صعوبة",
+      "زعماء",
+      "حشرات",
+      "أجهزة ضعيفة",
+      "سولز"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "hades",
+    "title": "هاديس",
+    "titleEn": "Hades",
+    "rating": 9.8,
+    "reviewCount": 290000,
+    "genre": [
+      "روغ لايك (Rogue-like)",
+      "أكشن هاك آند سلاش",
+      "أساطير يونانية",
+      "سرد"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145360/library_hero.jpg",
+    "releaseYear": "2020",
+    "developer": "Supergiant Games",
+    "description": "تحدى إله العالم السفلي بصفتك زاجريوس، أمير العالم السفلي الخالد الذي يحاول الهروب نحو جبل أوليمبوس. كل محاولة هروب تمنحك قوى جديدة من آلهة الإغريق وحوارات ذكية لا تتكرر أبداً.",
+    "features": [
+      "أول لعبة في التاريخ تفوز بجائزة هوغو الأدبية المرموقة لعمق نصوصها",
+      "قتال فائق السرعة والسلاسة مع تنوع لا نهائي من بناء المهارات (Builds)",
+      "تمثيل صوتي استثنائي وموسيقى روك ميتال ملحمية",
+      "خفيفة جداً ومثالية للعب المحمول على Steam Deck واللابتوبات"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 SP1",
+      "cpu": "معالج ثنائي النواة 2.4 GHz",
+      "gpu": "كرت شاشة 1GB VRAM داعم لـ DirectX 10",
+      "ram": "4 جيجابايت RAM",
+      "storage": "15 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج ثنائي النواة 3.0 GHz+",
+      "gpu": "كرت شاشة 2GB VRAM داعم لـ DirectX 11 / 12",
+      "ram": "8 جيجابايت RAM",
+      "storage": "15 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "dead-cells",
+      "hollow-knight"
+    ],
+    "trailerOrGameplayNote": "اللعبة التي جعلت العالم بأسره يقع في حب نمط الروغ لايك.",
+    "tags": [
+      "هاديس",
+      "روغ لايك",
+      "إغريق",
+      "سريع",
+      "هاك آند سلاش",
+      "أجهزة ضعيفة"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "dead-cells",
+    "title": "ديد سيلز",
+    "titleEn": "Dead Cells",
+    "rating": 9.5,
+    "reviewCount": 160000,
+    "genre": [
+      "روغ فانييا (Roguevania)",
+      "أكشن سريع",
+      "سيوف وتفادي",
+      "بكسل آرت"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/588650/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/588650/library_hero.jpg",
+    "releaseYear": "2018 (توسعة Castlevania 2023)",
+    "developer": "Motion Twin / Evil Empire",
+    "description": "مت، تعلم، كرر! لعبة روغفانيا سريعة كالإعصار في قلعة متغيرة باستمرار. استخدم أسلحة متنوعة، قنابل، ومناجل لتخترق حشود الأعداء بدون نقاط حفظ، فالموت يعيدك لنقطة البداية مع مهارات جديدة.",
+    "features": [
+      "استجابة تحكم فورية وسلاسة إيقاعية لا تضاهى في ألعاب الأكشن",
+      "أكثر من 150 سلاحاً ومهارة قابلة للتطوير والدمج",
+      "تحديثات مستمرة أضافت قلعة كاسلفانيا والأسلحة الأسطورية",
+      "تعمل على أي جهاز كمبيوتر أو لابتوب بسلاسة 60 إطاراً"
+    ],
+    "minRequirements": {
+      "os": "Windows 7+",
+      "cpu": "Intel i5+",
+      "gpu": "Nvidia GTX 460 / Radeon HD 7800",
+      "ram": "2 جيجابايت RAM",
+      "storage": "4 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "Intel i5+",
+      "gpu": "Nvidia GTX 760 / Radeon R7 370",
+      "ram": "4 جيجابايت RAM",
+      "storage": "4 جيجابايت"
+    },
+    "similarGameIds": [
+      "hades",
+      "hollow-knight"
+    ],
+    "trailerOrGameplayNote": "إدمان الحركة والقتال السريع بأعلى معايير الإتقان.",
+    "tags": [
+      "ديد سيلز",
+      "روغ لايك",
+      "بكسل",
+      "سريع",
+      "سيوف",
+      "أجهزة ضعيفة"
+    ]
+  },
+  {
+    "id": "celeste",
+    "title": "سيليست",
+    "titleEn": "Celeste",
+    "rating": 9.7,
+    "reviewCount": 110000,
+    "genre": [
+      "منصات وقفز دقيق (Platformer)",
+      "قصة نفسية مؤثرة",
+      "بكسل آرت"
+    ],
+    "category": [
+      "pc",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/504230/library_hero.jpg",
+    "releaseYear": "2018",
+    "developer": "Maddy Makes Games",
+    "description": "ساعد مادلين على تسلق قمة جبل سيليست ومواجهة مخاوفها وقلقها الداخلي. لعبة قفز منصات ذات دقة بالغة وألحان بيانو وإلكترونيك مذهلة تشد الأنفاس وتمنح شعوراً رائعاً بالإنجاز عند كل قفزة.",
+    "features": [
+      "قصة إنسانية عميقة تلامس القلق والاكتئاب والانتصار الذاتي",
+      "أكثر من 700 شاشة تحدي قفز منصات مصممة بعبقرية مطلقة",
+      "موسيقى تصويرية أيقونية من الملحنة لينا راين",
+      "تعمل على أي لابتوب قديم باستهلاك ضئيل جداً للموارد"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8 / 10",
+      "cpu": "Intel Core i3 M380",
+      "gpu": "Intel HD 4000",
+      "ram": "2 جيجابايت RAM",
+      "storage": "1.2 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج ثنائي النواة حديث",
+      "gpu": "كرت شاشة مدمج أو منفصل",
+      "ram": "4 جيجابايت RAM",
+      "storage": "1.2 جيجابايت"
+    },
+    "similarGameIds": [
+      "hollow-knight",
+      "undertale"
+    ],
+    "trailerOrGameplayNote": "أعظم لعبة قفز منصات في العقد الأخير مع قصة لن تنساها.",
+    "tags": [
+      "سيليست",
+      "قفز",
+      "منصات",
+      "قصة",
+      "موسيقى",
+      "أجهزة ضعيفة",
+      "تحدي"
+    ]
+  },
+  {
+    "id": "terraria",
+    "title": "تيراريا",
+    "titleEn": "Terraria",
+    "rating": 9.8,
+    "reviewCount": 1100000,
+    "genre": [
+      "مغامرات وبناء ثنائي الأبعاد",
+      "بقاء وساندبوكس",
+      "صياغة وزعماء"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/library_hero.jpg",
+    "releaseYear": "2011 (تحديثات ضخمة مستمرة)",
+    "developer": "Re-Logic",
+    "description": "احفر، قاتل، استكشف، وابنِ! عالم ثنائي الأبعاد لا نهائي يجمع بين عمق قتال ألعاب الآر بي جي ومئات الزعماء مع حرية البناء الكاملة كنسخة ثنائية الأبعاد غنية جداً من ماينكرافت.",
+    "features": [
+      "أكثر من 5,000 أداة وسلاح ودرع وتعويذة سحرية يمكن صياغتها",
+      "أكثر من 30 زعيماً وحدثاً ملحمياً كغزو الفضائيين وكسوف الشمس",
+      "دعم اللعب الجماعي مع عدد غير محدود من الأصدقاء عبر الإنترنت",
+      "واحدة من أعلى ألعاب ستيم تقييماً في التاريخ وأخفها حملاً"
+    ],
+    "minRequirements": {
+      "os": "Windows XP / Vista / 7 / 8 / 10",
+      "cpu": "معالج 1.6 GHz",
+      "gpu": "كرت شاشة 128MB داعم لـ Shader Model 2.0",
+      "ram": "2.5 جيجابايت RAM",
+      "storage": "500 ميجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج ثنائي النواة 3.0 GHz",
+      "gpu": "كرت شاشة 512MB داعم لـ Shader Model 3.0",
+      "ram": "4 جيجابايت RAM",
+      "storage": "500 ميجابايت"
+    },
+    "similarGameIds": [
+      "minecraft",
+      "stardew-valley"
+    ],
+    "trailerOrGameplayNote": "مئات الساعات من المغامرات والبناء بحجم أقل من 1 جيجابايت.",
+    "tags": [
+      "تيراريا",
+      "بناء",
+      "حفر",
+      "زعماء",
+      "سحر",
+      "أجهزة ضعيفة",
+      "أصدقاء"
+    ]
+  },
+  {
+    "id": "stardew-valley",
+    "title": "ستاردو فالي",
+    "titleEn": "Stardew Valley",
+    "rating": 9.8,
+    "reviewCount": 650000,
+    "genre": [
+      "محاكاة مزرعة وهدوء",
+      "RPG ريفي",
+      "صداقات وتعدين",
+      "إندي"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/library_hero.jpg",
+    "releaseYear": "2016 (تحديث 1.6 الضخم 2024)",
+    "developer": "ConcernedApe",
+    "description": "لقد ورثت مزرعة جدك القديمة في ستاردو فالي. اترك حياة المدينة والشركات الكئيبة، وابدأ بزراعة المحاصيل، تربية الحيوانات، استكشاف المناجم ومصادقة سكان القرية الطيبين.",
+    "features": [
+      "صنعها مطور منفرد بالكامل (إريك بارون) في رسالة شغف نقية",
+      "إمكانية اللعب التعاوني مع حتى 8 أصدقاء في نفس المزرعة",
+      "صيد أسماك، طبخ، تعدين، ومهرجانات فصول سنوية مليئة بالدفء",
+      "تعمل على أي حاسوب محمول أو مكتبي بدون استهلاك طاقة"
+    ],
+    "minRequirements": {
+      "os": "Windows Vista / 7 / 8 / 10",
+      "cpu": "معالج 2 Ghz",
+      "gpu": "كرت شاشة 256 mb داعم لـ Shader Model 3.0",
+      "ram": "2 جيجابايت RAM",
+      "storage": "500 ميجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج ثنائي النواة",
+      "gpu": "أي كرت شاشة مدمج",
+      "ram": "4 جيجابايت RAM",
+      "storage": "1 جيجابايت"
+    },
+    "similarGameIds": [
+      "terraria",
+      "minecraft"
+    ],
+    "trailerOrGameplayNote": "أدفأ وأجمل لعبة ملاذ وهدوء نفسي في تاريخ الألعاب.",
+    "tags": [
+      "مزرعة",
+      "هدوء",
+      "استرخاء",
+      "أجهزة ضعيفة",
+      "حيوانات",
+      "تعاوني",
+      "إندي"
+    ]
+  },
+  {
+    "id": "undertale",
+    "title": "أندرتيل",
+    "titleEn": "Undertale",
+    "rating": 9.7,
+    "reviewCount": 220000,
+    "genre": [
+      "RPG مبتكر",
+      "خيارات ومشاعر",
+      "بكسل آرت",
+      "موسيقى أيقونية"
+    ],
+    "category": [
+      "pc",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391540/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/391540/library_hero.jpg",
+    "releaseYear": "2015",
+    "developer": "Toby Fox",
+    "description": "لعبة تقمص الأدوار التي لا تحتاج فيها لتدمير أي عدو. سقطت كطفل في عالم الوحوش تحت الأرض، ويمكنك مصادقة كل وحش أو قتاله. نهايات متعددة وقصة تخاطب الوجدان بفكاهة ومشاعر عبقرية.",
+    "features": [
+      "نظام قتال مبتكر يمكنك فيه النجاة بالحديث والرحمة (Mercy)",
+      "موسيقى Megalovania الشهيرة ومقاطع صوتية أصبحت ظاهرة عالمية",
+      "شخصيات مثل سنس وبابايروس مكتوبة بذكاء كوميدي خارق",
+      "تعمل على أضعف الحواسيب بحجم خفيف جداً"
+    ],
+    "minRequirements": {
+      "os": "Windows XP / Vista / 7 / 8 / 10",
+      "cpu": "معالج 1.0 GHz",
+      "gpu": "كرت شاشة 128MB",
+      "ram": "2 جيجابايت RAM",
+      "storage": "200 ميجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج 2.0 GHz",
+      "gpu": "كرت شاشة 512MB",
+      "ram": "3 جيجابايت RAM",
+      "storage": "200 ميجابايت"
+    },
+    "similarGameIds": [
+      "celeste",
+      "hollow-knight"
+    ],
+    "trailerOrGameplayNote": "أيقونة فنية حطمت كل القواعد الكلاسيكية للألعاب.",
+    "tags": [
+      "أندرتيل",
+      "سنس",
+      "قصة",
+      "موسيقى",
+      "أجهزة ضعيفة",
+      "خيارات",
+      "مشاعر"
+    ]
+  },
+  {
+    "id": "cuphead",
+    "title": "كابهيد",
+    "titleEn": "Cuphead",
+    "rating": 9.6,
+    "reviewCount": 150000,
+    "genre": [
+      "كرتون كلاسيكي ثلاثينيات",
+      "تصويب وركض (Run & Gun)",
+      "قتال زعماء وصعوبة"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/268910/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/268910/library_hero.jpg",
+    "releaseYear": "2017 (توسعة The Delicious Last Course)",
+    "developer": "Studio MDHR",
+    "description": "لعبة الركض والتصويب التي تحاكي أفلام الكرتون الكلاسيكية لعام 1930. رسومات مرسومة يدوياً إطاراً بإطار وموسيقى جاز بيغ باند مسجلة بآلات حقيقية لمواجهة زعماء شيطانيين بتحدٍ ممتع.",
+    "features": [
+      "رسوم يدوية كلاسيكية ملونة وتأثيرات أشرطة سينما قديمة مذهلة",
+      "قتال زعماء مكثف مع أطوار مرحلية متعددة تختبر ردود الأفعال",
+      "طور لعب تعاوني محلي لشخصين (كابهيد وموغمان) على نفس الشاشة",
+      "موسيقى الجاز الحية الأصلية حائزة على جوائز دولية"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8 / 10",
+      "cpu": "Intel Core2 Duo E8400 3.0GHz / AMD Athlon 64 X2 6000+",
+      "gpu": "Geforce 9600 GT / AMD HD 3870 512MB",
+      "ram": "3 جيجابايت RAM",
+      "storage": "4 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "Intel Core i3 أو أعلى",
+      "gpu": "Nvidia GTX 650",
+      "ram": "4 جيجابايت RAM",
+      "storage": "4 جيجابايت"
+    },
+    "similarGameIds": [
+      "hollow-knight",
+      "dead-cells"
+    ],
+    "trailerOrGameplayNote": "معجزة بصرية فنية كأنك تلعب داخل فيلم كرتوني كلاسيكي قديم.",
+    "tags": [
+      "كابهيد",
+      "كرتون",
+      "جاز",
+      "زعماء",
+      "صعوبة",
+      "أجهزة ضعيفة",
+      "تعاوني"
+    ]
+  },
+  {
+    "id": "slay-the-spire",
+    "title": "سلاي ذا سباير",
+    "titleEn": "Slay the Spire",
+    "rating": 9.7,
+    "reviewCount": 140000,
+    "genre": [
+      "بناء أوراق البطاقات (Deckbuilder)",
+      "روغ لايك",
+      "استراتيجية ذكاء"
+    ],
+    "category": [
+      "pc",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/646570/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/646570/library_hero.jpg",
+    "releaseYear": "2019",
+    "developer": "Mega Crit Games",
+    "description": "أعظم لعبة بناء أوراق لعب استراتيجية وتكتيكية. اصعد البرج المتغير، اختر بطاقاتك بعناية، واكتشف آثارا قديمة تخلق تفاعلات خارقة لهزيمة وحوش وزعماء البرج.",
+    "features": [
+      "توازن تكتيكي عبقري يلهم التفكير العميق والتجربة المستمرة",
+      "4 شخصيات مختلفة بأساليب وبطاقات وفلسفات لعب متباينة كلياً",
+      "إدمان خالص يجعل كل جولة مختلفة وتدوم لعشرات الساعات",
+      "خفيفة جداً ويمكن تشغيلها على أي لابتوب دون بطارية قوية"
+    ],
+    "minRequirements": {
+      "os": "Windows XP / Vista / 7 / 8 / 10",
+      "cpu": "معالج 2.0 Ghz",
+      "gpu": "كرت شاشة 128mb VRAM",
+      "ram": "2 جيجابايت RAM",
+      "storage": "1 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج 2.5 Ghz",
+      "gpu": "كرت شاشة مدمج حديث",
+      "ram": "4 جيجابايت RAM",
+      "storage": "1 جيجابايت"
+    },
+    "similarGameIds": [
+      "hades",
+      "dead-cells"
+    ],
+    "trailerOrGameplayNote": "القمة التي أسست معايير ألعاب بطاقات الروغ لايك الحديثة.",
+    "tags": [
+      "بطاقات",
+      "استراتيجية",
+      "روغ لايك",
+      "ذكاء",
+      "أجهزة ضعيفة",
+      "برج"
+    ]
+  },
+  {
+    "id": "vampire-survivors",
+    "title": "فامباير سيرفايفرز",
+    "titleEn": "Vampire Survivors",
+    "rating": 9.8,
+    "reviewCount": 230000,
+    "genre": [
+      "بقاء ضد جحافل (Bullet Hell)",
+      "روغ لايت إدماني",
+      "بكسل كلاسيكي"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1794680/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1794680/library_hero.jpg",
+    "releaseYear": "2022",
+    "developer": "poncle",
+    "description": "كن أنت الجحيم نفسه! في 30 دقيقة من القتال النقي، تحرك وتفادَ آلاف الوحوش بينما تطلق أسلحتك تلقائياً. اجمع الجواهر، طور أسلحتك لتصبح أسلحة مدمرة تمسح الشاشة بأكملها.",
+    "features": [
+      "أعلى معدل إدمان ومتعة مقابل سعر رمزي جداً",
+      "طور تعاوني محلي حتى 4 لاعبين على نفس الشاشة",
+      "عشرات الشخصيات والأسلحة السرية والتطورات المذهلة",
+      "تعمل على أي جهاز أو لابتوب حتى الأقدم منها دون أي بطء"
+    ],
+    "minRequirements": {
+      "os": "Windows 7+",
+      "cpu": "Intel Pentium 4 processor أو أحدث",
+      "gpu": "أي كرت مدمج",
+      "ram": "1 جيجابايت RAM",
+      "storage": "500 ميجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج ثنائي النواة",
+      "gpu": "أي كرت مدمج",
+      "ram": "2 جيجابايت RAM",
+      "storage": "500 ميجابايت"
+    },
+    "similarGameIds": [
+      "hades",
+      "dead-cells"
+    ],
+    "trailerOrGameplayNote": "ظاهرة الألعاب التي خطفت عقول النقاد واللاعبين ببساطتها.",
+    "tags": [
+      "فامباير",
+      "بقاء",
+      "إدمان",
+      "وحوش",
+      "أجهزة ضعيفة",
+      "أسلحة",
+      "بكسل"
+    ]
+  },
+  {
+    "id": "resident-evil-4",
+    "title": "ريزدنت إيفل 4 ريميك",
+    "titleEn": "Resident Evil 4 Remake",
+    "rating": 9.6,
+    "reviewCount": 220000,
+    "genre": [
+      "رعب بقاء",
+      "أكشن وإطلاق نار",
+      "قصة سينمائية",
+      "زومبي وقرويين"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2050650/library_hero.jpg",
+    "releaseYear": "2023",
+    "developer": "Capcom",
+    "description": "إعادة تصور كاملة وتحفة بصرية لواحدة من أكثر ألعاب الرعب والأكشن تأثيراً في التاريخ. ينطلق العميل ليون إس كينيدي إلى قرية إسبانية منعزلة لإنقاذ ابنة الرئيس الأمريكي من طائفة لوس إلومينادوس المرعبة.",
+    "features": [
+      "نظام صد وهجوم بالسكين (Parry) ثوري ومتقن وسريع",
+      "رسوميات جبارة على محرك RE Engine وتفاصيل رعب مظلمة وواقعية",
+      "إدارة حقيبة وحقن وذخائر وتجارة مع التاجر الأيقوني",
+      "طور المرتزقة (The Mercenaries) وتوسعة Separate Ways بجودة فائقة"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "AMD Ryzen 3 1200 / Intel Core i5-7500",
+      "gpu": "AMD Radeon RX 560 / Nvidia GeForce GTX 1050 Ti",
+      "ram": "8 جيجابايت RAM",
+      "storage": "68 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "AMD Ryzen 5 3600 / Intel Core i7 8700",
+      "gpu": "AMD Radeon RX 5700 / Nvidia GeForce GTX 1070",
+      "ram": "16 جيجابايت RAM",
+      "storage": "68 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "silent-hill-2",
+      "alan-wake-2",
+      "dead-space"
+    ],
+    "trailerOrGameplayNote": "ريميك أسطوري جمع بين عبقرية الأصل وتكنولوجيا العصر الحديث.",
+    "tags": [
+      "رعب",
+      "ريزدنت إيفل",
+      "ليون",
+      "زومبي",
+      "بقاء",
+      "أسلحة",
+      "كابكوم"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "silent-hill-2",
+    "title": "سايلنت هيل 2 ريميك",
+    "titleEn": "Silent Hill 2 Remake",
+    "rating": 9.4,
+    "reviewCount": 120000,
+    "genre": [
+      "رعب نفسي عميق",
+      "ضباب وألغاز",
+      "قصة غامضة",
+      "موسيقى مرعبة"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2124490/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2124490/library_hero.jpg",
+    "releaseYear": "2024",
+    "developer": "Bloober Team / Konami",
+    "description": "تلقى جيمس ساندرلاند رسالة من زوجته المتوفاة ماري، تطلب منه مقابلتها في مكانهما الخاص في بلدة سايلنت هيل المغطاة بالضباب. رحلة في أعماق الذنب والألم النفسي ومواجهة رأس الهرم (Pyramid Head).",
+    "features": [
+      "أعظم قصة رعب نفسي في تاريخ ألعاب الفيديو أعيد بناؤها بالكامل",
+      "ضباب كثيف وإضاءات مرعبة ومؤثرات صوتية ثلاثية الأبعاد على محرك UE5",
+      "قتال منظور فوق الكتف واقعي ومواجهات توتر نفسي عالية",
+      "ألحان الملحن الأسطوري أكيرا ياماوكا المعاد توزيعها"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i7-6700K / AMD Ryzen 5 3600",
+      "gpu": "Nvidia GeForce GTX 1070 Ti / AMD Radeon RX 5700",
+      "ram": "16 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 11 (64-bit)",
+      "cpu": "Intel Core i7-8700K / AMD Ryzen 5 3600X",
+      "gpu": "Nvidia GeForce RTX 2080 / AMD Radeon 6800XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD NVMe"
+    },
+    "similarGameIds": [
+      "resident-evil-4",
+      "alan-wake-2"
+    ],
+    "trailerOrGameplayNote": "عودة ملك الرعب النفسي بضبابها وكوابيسها التي تخلد في الذاكرة.",
+    "tags": [
+      "رعب",
+      "سايلنت هيل",
+      "ضباب",
+      "نفسي",
+      "ألغاز",
+      "قصة",
+      "كونامي"
+    ]
+  },
+  {
+    "id": "alan-wake-2",
+    "title": "ألان ويك 2",
+    "titleEn": "Alan Wake 2",
+    "rating": 9.5,
+    "reviewCount": 140000,
+    "genre": [
+      "رعب بقاء نفسي",
+      "تحقيق سينمائي",
+      "رسوميات جيل قادم",
+      "قصة خارقة"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6ksp.jpg",
+    "backdropImage": "https://images.igdb.com/igdb/image/upload/t_1080p/co6ksp.jpg",
+    "releaseYear": "2023",
+    "developer": "Remedy Entertainment",
+    "description": "الكاتب المحتجز ألان ويك يحاول كتابة طريق هروبه من \"المكان المظلم\"، بينما تحقق عميلة الـ FBI ساغا أندرسون في جرائم قتل طقسية غامضة في بلدة برايت فولز. قصة تجمع بين الرعب والسينما والتحقيق.",
+    "features": [
+      "فازت بجوائز أفضل إخراج، أفضل قصة، وأفضل تصميم فني في The Game Awards",
+      "رسوميات تتبع المسار الكامل (Full Path Tracing) هي الأقوى في الجيل الحالي",
+      "مكان العقل (Mind Place) لحل الألغاز وتجميع الأدلة الجنائية كالمحققين",
+      "مشهد موسيقي مسرحي استعراضي تفاعلي ثوري دخل تاريخ الألعاب"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel i5-7600K / AMD Ryzen 5 1600",
+      "gpu": "GeForce RTX 2060 / Radeon RX 6600",
+      "ram": "16 جيجابايت RAM",
+      "storage": "90 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel i7-10700K / AMD Ryzen 7 3700X",
+      "gpu": "GeForce RTX 3070 / Radeon RX 6700 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "90 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "resident-evil-4",
+      "silent-hill-2"
+    ],
+    "trailerOrGameplayNote": "تجربة رعب سينمائية فائقة الذكاء وأعلى قمة بصرية تقنية.",
+    "tags": [
+      "ألان ويك",
+      "رعب",
+      "تحقيق",
+      "قصة",
+      "مظلم",
+      "ريميدي",
+      "سينمائي"
+    ]
+  },
+  {
+    "id": "dead-space",
+    "title": "ديد سبيس ريميك",
+    "titleEn": "Dead Space Remake",
+    "rating": 9.3,
+    "reviewCount": 95000,
+    "genre": [
+      "رعب خيال علمي",
+      "فضاء ومخلوقات نكرومورف",
+      "بقاء وعزل"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1693980/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1693980/library_hero.jpg",
+    "releaseYear": "2023",
+    "developer": "Motive Studio / EA",
+    "description": "المهندس أيزاك كلارك يصل إلى سفينة التعدين الفضائية USG Ishimura ليجد طاقمها مقتولاً ومتحولاً إلى كائنات نكرومورف مرعبة، بينما فقد حبيبته نيكول في مكان ما على متنها. رعب الفضاء المعزول في أبهى صوره.",
+    "features": [
+      "نظام تقطيع الأطراف الاستراتيجي واستخدام أسلحة البلازما الهندسية",
+      "سفينة فضائية مفتوحة ومترابطة بالكامل بدون شاشات تحميل",
+      "مدير الشدة (Intensity Director) الذي يولد الرعب والأصوات ديناميكياً",
+      "رسوميات محرك Frostbite وأجواء إضاءة وظلال تخطف الأنفاس"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Ryzen 5 2600x / Core i5 8600",
+      "gpu": "Radeon RX 5700 / Geforce GTX 1070",
+      "ram": "16 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Ryzen 5 5600X / Core i5 11600K",
+      "gpu": "Radeon RX 6700 XT / Geforce RTX 2070",
+      "ram": "16 جيجابايت RAM",
+      "storage": "50 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "resident-evil-4",
+      "alan-wake-2"
+    ],
+    "trailerOrGameplayNote": "أعظم تجربة رعب خيال علمي في الفضاء الموحش.",
+    "tags": [
+      "رعب",
+      "فضاء",
+      "ديد سبيس",
+      "نكرومورف",
+      "سفينة",
+      "تقطيع",
+      "خيال علمي"
+    ]
+  },
+  {
+    "id": "outlast",
+    "title": "أوت لاست",
+    "titleEn": "Outlast",
+    "rating": 9.3,
+    "reviewCount": 180000,
+    "genre": [
+      "رعب نفسي ومطاردة",
+      "كاميرا ورؤية ليلية",
+      "هروب واختباء"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238320/library_hero.jpg",
+    "releaseYear": "2013",
+    "developer": "Red Barrels",
+    "description": "الصحفي الاستقصائي مايلز أبشور يتسلل إلى مستشفى ماونت ماسيف للأمراض العقلية بعد بلاغ مجهول. لا أسلحة ولا قتال؛ سلاحك الوحيد هو كاميرا الفيديو المزودة بالرؤية الليلية وبطارياتها السريعة النفاذ.",
+    "features": [
+      "رعب مطاردات حقيقي يرفع نبضات القلب لأقصى حد",
+      "اعتماد الرؤية الليلية الخضراء المخيفة والبحث عن بطاريات في الظلام",
+      "عدم وجود أسلحة يجعل كل مواجهة مع المرضى محاولة نجاة يائسة",
+      "تعمل بسلاسة ممتازة على الحواسيب واللابتوبات القديمة"
+    ],
+    "minRequirements": {
+      "os": "Windows XP / Vista / 7 / 8 / 10",
+      "cpu": "معالج ثنائي النواة 2.2 GHz",
+      "gpu": "NVIDIA GeForce 9800GTX / ATI Radeon HD 3xxx",
+      "ram": "2 جيجابايت RAM",
+      "storage": "5 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج رباعي النواة 2.8 GHz",
+      "gpu": "NVIDIA GeForce GTX 460 / ATI Radeon HD 6850",
+      "ram": "4 جيجابايت RAM",
+      "storage": "5 جيجابايت"
+    },
+    "similarGameIds": [
+      "silent-hill-2",
+      "resident-evil-4"
+    ],
+    "trailerOrGameplayNote": "تجربة الرعب الأكثر إخافة وشهرة بين صناع المحتوى في العالم.",
+    "tags": [
+      "أوت لاست",
+      "رعب",
+      "كاميرا",
+      "هروب",
+      "مستشفى",
+      "مطاردة",
+      "أجهزة ضعيفة"
+    ]
+  },
+  {
+    "id": "minecraft",
+    "title": "ماينكرافت",
+    "titleEn": "Minecraft",
+    "rating": 9.9,
+    "reviewCount": 4500000,
+    "genre": [
+      "ساندبوكس وبناء",
+      "بقاء ومغامرات",
+      "عالم مفتوح لا نهائي",
+      "صياغة"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8438.jpg",
+    "backdropImage": "https://images.igdb.com/igdb/image/upload/t_720p/sc8d97.jpg",
+    "releaseYear": "2011 (تحديثات مجانية مستمرة)",
+    "developer": "Mojang Studios",
+    "description": "اللعبة الأكثر مبيعاً في تاريخ البشرية بأكثر من 300 مليون نسخة. عالم لا نهائي من المكعبات حيث خيالك هو الحد الوحيد؛ ابنِ قلاعاً ومدناً خيالية، اهزم تنين الإندر، واستمتع بآلاف السيرفرات والمودات.",
+    "features": [
+      "حرية إبداعية مطلقة في البناء واستخدام حجر الردستون لصنع حواسيب وآلات",
+      "سيرفرات جماعية ضخمة لألعاب مثل الهايد آند سيك والبدوارز والسرفايفر",
+      "دعم تعديلات (Mods) ومواد تظليل (Shaders) تحول اللعبة إلى لوحة واقعية",
+      "تعمل على كافة الأجهزة من اللابتوبات المتواضعة إلى أقوى الحواسيب"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i3-3210 / AMD A8-7600",
+      "gpu": "Intel HD Graphics 4000 / AMD Radeon R5 series",
+      "ram": "4 جيجابايت RAM",
+      "storage": "4 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5-4690 / AMD A10-7800",
+      "gpu": "GeForce 700 Series / AMD Radeon Rx 200 Series",
+      "ram": "8 جيجابايت RAM",
+      "storage": "8 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "terraria",
+      "valheim",
+      "stardew-valley"
+    ],
+    "trailerOrGameplayNote": "اللعبة الأسطورية التي شكلت طفولة وحاضر أجيال كاملة من اللاعبين.",
+    "tags": [
+      "ماينكرافت",
+      "بناء",
+      "مكعبات",
+      "ردستون",
+      "سرفايفل",
+      "أجهزة ضعيفة",
+      "عالم مفتوح"
+    ],
+    "isFeatured": true
+  },
+  {
+    "id": "rust",
+    "title": "رست",
+    "titleEn": "Rust",
+    "rating": 9.1,
+    "reviewCount": 920000,
+    "genre": [
+      "بقاء متعدد اللاعبين (Hardcore Survival)",
+      "بناء قواعد وغارات",
+      "pvp قاسي"
+    ],
+    "category": [
+      "pc",
+      "multiplayer"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/library_hero.jpg",
+    "releaseYear": "2018",
+    "developer": "Facepunch Studios",
+    "description": "الهدف الوحيد في رست هو البقاء على قيد الحياة. تغلب على الجوع والعطش والبرد، ولكن الخطر الأكبر يأتي من اللاعبين الآخرين. ابنِ حصنك، صنع أسلحتك، وشن غارات بالمتفجرات على قواعد الخصوم.",
+    "features": [
+      "واحدة من أشرس تجارب اللعب التنافسي النفسي والاجتماعي بين اللاعبين",
+      "بناء قواعد دفاعية معقدة بأنظمة مصائد كهربائية وأبواب سرية",
+      "غارات ملحمية (Raids) بالصواريخ والمتفجرات وطائرات الهليكوبتر",
+      "سيرفرات شهرية وأسبوعية متجددة تبقي الحماس دائماً في ذروته"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i7-3770 / AMD FX-9590",
+      "gpu": "GTX 670 2GB / AMD R9 280",
+      "ram": "10 جيجابايت RAM",
+      "storage": "25 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 11 (64-bit)",
+      "cpu": "Intel Core i7-8700 / AMD Ryzen 5 3600",
+      "gpu": "GTX 1080 / AMD RX Vega 64",
+      "ram": "16 جيجابايت RAM",
+      "storage": "25 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "minecraft",
+      "valheim"
+    ],
+    "trailerOrGameplayNote": "لعبة البقاء والغارات الأكثر إثارة وتحدياً بين الكلانات والأصدقاء.",
+    "tags": [
+      "رست",
+      "بقاء",
+      "غارات",
+      "بناء",
+      "صواريخ",
+      "pvp",
+      "كلانات"
+    ]
+  },
+  {
+    "id": "valheim",
+    "title": "فالهايم",
+    "titleEn": "Valheim",
+    "rating": 9.6,
+    "reviewCount": 410000,
+    "genre": [
+      "بقاء فايكنج",
+      "استكشاف وبناء قلاع",
+      "تعاوني مع أصدقاء",
+      "فانتازيا"
+    ],
+    "category": [
+      "pc",
+      "multiplayer",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/892970/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/892970/library_hero.jpg",
+    "releaseYear": "2021",
+    "developer": "Iron Gate Studio",
+    "description": "محارب فايكنج معركة سقط في المطهر الإسكندنافي العاشر ليثبت جدارته أمام أودين. ابنِ قاعات الفايكنج الخشبية، اصنع سفن الدراكار الطويلة، وأبحر مع رفاقك عبر محيطات شاسعة لهزيمة وحوش الأساطير.",
+    "features": [
+      "نظام بناء فيزيائي واقعي يعتمد على الأعمدة وتوزيع الثقل والدخان",
+      "إبحار استكشافي ساحر مع أصوات أمواج وعواصف بحرية مهيبة",
+      "لعب تعاوني مثالي حتى 10 لاعبين في عالم مشترك خاص بكم",
+      "حجم تحميل صغير جداً (أقل من 2 جيجابايت) رغم عمق اللعبة الهائل"
+    ],
+    "minRequirements": {
+      "os": "Windows 7+",
+      "cpu": "معالج رباعي النواة 2.6 GHz",
+      "gpu": "GeForce GTX 950 / Radeon HD 7970",
+      "ram": "8 جيجابايت RAM",
+      "storage": "2 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "Intel Core i5 3GHz / AMD Ryzen 5 3GHz",
+      "gpu": "GeForce GTX 1060 / Radeon RX 580",
+      "ram": "16 جيجابايت RAM",
+      "storage": "2 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "minecraft",
+      "rust",
+      "terraria"
+    ],
+    "trailerOrGameplayNote": "تجربة فايكنج تعاونية دافئة وملحمية حطمت أرقام ستيم القياسية.",
+    "tags": [
+      "فايكنج",
+      "فالهايم",
+      "بناء",
+      "سفن",
+      "تعاوني",
+      "أودين",
+      "أجهزة ضعيفة"
+    ]
+  },
+  {
+    "id": "subnautica",
+    "title": "ساب نوتيكا",
+    "titleEn": "Subnautica",
+    "rating": 9.7,
+    "reviewCount": 260000,
+    "genre": [
+      "بقاء تحت الماء",
+      "استكشاف أعماق المحيط",
+      "خيال علمي ورعب",
+      "بناء"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/264710/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/264710/library_hero.jpg",
+    "releaseYear": "2018",
+    "developer": "Unknown Worlds Entertainment",
+    "description": "سقطت سفينتك الفضائية على كوكب محيطي فضائي غامض. انزل إلى الأعماق، ابنِ قواعدك وغواصاتك، واكتشف شعاب مرجانية ملونة وخنادق محيطية عميقة ومظلمة تسكنها كائنات ليفياثان المرعبة.",
+    "features": [
+      "أعظم وأدق إحساس باستكشاف المحيطات وأسرار الكائنات البحرية",
+      "بناء وتخصيص قواعد متقدمة تحت الماء ومختبرات تكنولوجية",
+      "غواصة سايكلوبس الضخمة القابلة للقيادة والإبحار في خنادق الحمم",
+      "مزيج نادر بين جمال الطبيعة ورعب أعماق البحار والمخلوقات الضخمة"
+    ],
+    "minRequirements": {
+      "os": "Windows Vista SP2 / 7 / 8 / 10",
+      "cpu": "Intel Haswell 2 cores / 4 threads 2.5Ghz",
+      "gpu": "Intel HD 4600",
+      "ram": "4 جيجابايت RAM",
+      "storage": "20 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "Intel Haswell 4 cores / 4 threads 3.2Ghz",
+      "gpu": "Nvidia GTX 550 Ti / AMD Radeon HD 7850",
+      "ram": "8 جيجابايت RAM",
+      "storage": "20 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "minecraft",
+      "valheim"
+    ],
+    "trailerOrGameplayNote": "واحدة من أكثر ألعاب البقاء والاستكشاف سحراً وتفرداً.",
+    "tags": [
+      "محيط",
+      "غوص",
+      "بقاء",
+      "غواصة",
+      "أعماق",
+      "كائنات فضائية",
+      "رعب"
+    ]
+  },
+  {
+    "id": "hogwarts-legacy",
+    "title": "تراث هوجوورتس",
+    "titleEn": "Hogwarts Legacy",
+    "rating": 9.1,
+    "reviewCount": 420000,
+    "genre": [
+      "عالم سحري مفتوح",
+      "مدرسة سحر",
+      "أكشن آر بي جي",
+      "قصة"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/library_hero.jpg",
+    "releaseYear": "2023",
+    "developer": "Avalanche Software / Warner Bros.",
+    "description": "عش حلمك كطالب سحر في مدرسة هوجوورتس في القرن التاسع عشر قبل أحداث هاري بوتر. اختر منزلك، احضر حصص الجرعات والتعاويذ، وحلّق بالمكنسة فوق قرية هوجسميد وقلعة السحر العريقة.",
+    "features": [
+      "تصميم قلعة هوجوورتس بتفاصيل داخلية وممرات سرية ساحرة كما في الكتب",
+      "قتال عصي سحرية ديناميكي مع إمكانية استخدام التعاويذ المحرمة (أفادا كدافرا)",
+      "ترويض كائنات سحرية خارقة كالـ Hippogriff ورعايتها في غرفة الطلب",
+      "اللعبة الأكثر مبيعاً في العالم لعام 2023 متفوقة على كول أوف ديوتي"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i5-6600 / AMD Ryzen 5 1400",
+      "gpu": "NVIDIA GeForce GTX 960 4GB / AMD Radeon RX 470 4GB",
+      "ram": "16 جيجابايت RAM",
+      "storage": "85 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-8700 / AMD Ryzen 5 3600",
+      "gpu": "NVIDIA GeForce 1080 Ti / AMD Radeon RX 5700 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "85 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "witcher-3",
+      "elden-ring"
+    ],
+    "trailerOrGameplayNote": "الحلم الذي انتظره كل محبي عالم هاري بوتر والسحر لسنوات.",
+    "tags": [
+      "هاري بوتر",
+      "سحر",
+      "هوجوورتس",
+      "عصا",
+      "مكنسة",
+      "عالم مفتوح",
+      "قصة"
+    ]
+  },
+  {
+    "id": "monster-hunter-world",
+    "title": "مونستر هنتر: وورلد",
+    "titleEn": "Monster Hunter: World",
+    "rating": 9.3,
+    "reviewCount": 390000,
+    "genre": [
+      "صيد وحوش ملحمي",
+      "أكشن آر بي جي",
+      "تعاوني جماعي",
+      "صياغة أسلحة"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582010/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582010/library_hero.jpg",
+    "releaseYear": "2018 (توسعة Iceborne)",
+    "developer": "Capcom",
+    "description": "انطلق في العالم الجديد واصطد أضخم وأخطر التنانين والوحوش الحية في بيئاتها الطبيعية. استخدم جلود الوحوش وأنيابها لصنع دروع وأسلحة أسطورية في قتال تعاوني حماسي مع أصدقائك.",
+    "features": [
+      "أكثر من 14 صنف سلاح مختلف تماماً في أسلوب القتال والكومبو",
+      "نظام بيئي متفاعل تتصارع فيه الوحوش الضخمة مع بعضها البعض إقليمياً",
+      "إمكانية إطلاق نداء استغاثة (SOS Flare) لطلب مساعدة لاعبين حول العالم",
+      "أعلى لعبة مبيعاً في تاريخ شركة كابكوم بأكثر من 25 مليون نسخة"
+    ],
+    "minRequirements": {
+      "os": "Windows 7 / 8 / 10 (64-bit)",
+      "cpu": "Intel Core i5-4460 / AMD FX-6300",
+      "gpu": "Nvidia GeForce GTX 760 / AMD Radeon R7 260x",
+      "ram": "8 جيجابايت RAM",
+      "storage": "48 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "Intel Core i7 3770 / AMD FX-9590",
+      "gpu": "Nvidia GeForce GTX 1060 / AMD Radeon RX 480",
+      "ram": "8 جيجابايت RAM",
+      "storage": "48 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "elden-ring",
+      "black-myth-wukong"
+    ],
+    "trailerOrGameplayNote": "تجربة صيد الوحوش الأضخم والأكثر متعة على الإطلاق.",
+    "tags": [
+      "مونستر هنتر",
+      "صيد",
+      "وحوش",
+      "تنانين",
+      "كابكوم",
+      "تعاوني",
+      "أسلحة"
+    ]
+  },
+  {
+    "id": "dragons-dogma-2",
+    "title": "عقيدة التنين 2",
+    "titleEn": "Dragon's Dogma 2",
+    "rating": 8.9,
+    "reviewCount": 98000,
+    "genre": [
+      "أكشن آر بي جي",
+      "عالم مفتوح وتفاعلي",
+      "فيزياء قتال وتسلق",
+      "فانتازيا"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/library_hero.jpg",
+    "releaseYear": "2024",
+    "developer": "Capcom",
+    "description": "أنت الأريزن (Arisen) الذي سرق التنين قلبه. انطلق مع رفاق البيدق (Pawns) الذكاء الاصطناعي في مغامرة عالم مفتوح خيالية تتيح لك تسلق الوحوش العملاقة وتدمير الجسور واستخدام السحر المدمر.",
+    "features": [
+      "نظام مرافقين بيادق (Pawns) فريد يتعلمون من تجارب لاعبين آخرين",
+      "إمكانية تسلق الوحوش الضخمة كالسايكلوبس والغريفين وضرب نقاط ضعفها",
+      "عالم مفتوح تفاعلي بدون نقل سريع فوري يعيد للمغامرة هيبتها",
+      "تنوع هائل في فئات القتال من السحرة ورماة السهام إلى الفرسان"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i5 10600 / AMD Ryzen 5 3600",
+      "gpu": "Nvidia GeForce GTX 1070 / AMD Radeon RX 5500 XT",
+      "ram": "16 جيجابايت RAM",
+      "storage": "100 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "Intel Core i7-10700 / AMD Ryzen 7 3700X",
+      "gpu": "Nvidia GeForce RTX 2080 / AMD Radeon RX 6700",
+      "ram": "16 جيجابايت RAM",
+      "storage": "100 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "monster-hunter-world",
+      "elden-ring",
+      "witcher-3"
+    ],
+    "trailerOrGameplayNote": "فيزياء قتال وتفاعل وحوش هي الأمتع بين ألعاب الفانتازيا.",
+    "tags": [
+      "تنين",
+      "أكشن",
+      "تسلق",
+      "سحر",
+      "كابكوم",
+      "عالم مفتوح",
+      "بيادق"
+    ]
+  },
+  {
+    "id": "starfield",
+    "title": "ستارفيلد",
+    "titleEn": "Starfield",
+    "rating": 8.7,
+    "reviewCount": 160000,
+    "genre": [
+      "خيال علمي وفضاء",
+      "RPG واستكشاف كواكب",
+      "بناء سفن وقواعد"
+    ],
+    "category": [
+      "pc",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1716740/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1716740/library_hero.jpg",
+    "releaseYear": "2023 (توسعة Shattered Space)",
+    "developer": "Bethesda Game Studios",
+    "description": "أول عالم خيالي جديد من بيثيسدا منذ 25 عاماً. انضم إلى مجموعة \"كونستليشن\" الفضائية واستكشف أكثر من 1,000 كوكب، ابنِ سفينتك الخاصة قطعة بقطعة، وعش مغامرة استكشاف البشرية في الفضاء.",
+    "features": [
+      "تصميم وتخصيص سفن فضائية كاملة والتحكم بها في معارك الفضاء",
+      "أكثر من ألف كوكب وقمر للاستكشاف وجمع الموارد وبناء المستعمرات",
+      "قصة رئيسية غامضة تكشف أسرار كائنات وآثار قديمة خارج مجرتنا",
+      "دعم كامل للتعديلات والمودات الرسمية (Creation Kit)"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 (64-bit)",
+      "cpu": "AMD Ryzen 5 2600X / Intel Core i7-6800K",
+      "gpu": "AMD Radeon RX 5700 / NVIDIA GeForce 1070 Ti",
+      "ram": "16 جيجابايت RAM",
+      "storage": "125 جيجابايت SSD إلزامي"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "AMD Ryzen 5 3600X / Intel i5-10600K",
+      "gpu": "AMD Radeon RX 6800 XT / NVIDIA GeForce RTX 2080",
+      "ram": "16 جيجابايت RAM",
+      "storage": "125 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "skyrim",
+      "cyberpunk-2077"
+    ],
+    "trailerOrGameplayNote": "أضخم ملحمة فضاء آر بي جي من مطوري سكايرم وفول آوت.",
+    "tags": [
+      "فضاء",
+      "كواكب",
+      "سفن",
+      "بيثيسدا",
+      "خيال علمي",
+      "عالم مفتوح",
+      "ستارفيلد"
+    ]
+  },
+  {
+    "id": "the-forest",
+    "title": "ذا فورست (الغابة)",
+    "titleEn": "The Forest",
+    "rating": 9.5,
+    "reviewCount": 460000,
+    "genre": [
+      "بقاء ورعب في الغابة",
+      "بناء ملاجئ وفؤوس",
+      "أكلة لحوم البشر",
+      "تعاوني"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer",
+      "low-spec",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242760/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/242760/library_hero.jpg",
+    "releaseYear": "2018",
+    "developer": "Endnight Games",
+    "description": "بعد تحطم طائرتك كركاب وحيدين، تجد نفسك في شبه جزيرة غامضة ومليئة بأشجار الغابات وأكلة لحوم البشر المتحولين. ابنِ مخبأك، اقطع الأشجار، واكتشف الكهوف المظلمة للبحث عن ابنك المفقود تيمي.",
+    "features": [
+      "ذكاء اصطناعي غريب ومرعب لقبائل أكلة لحوم البشر يراقبونك بفضول وحذر",
+      "نظام بناء مخابئ وقلاع خشبية وفخاخ دفاعية ممتازة",
+      "استكشاف كهوف عميقة ومظلمة بحبال ومصابيح مليئة بالرعب والإثارة",
+      "لعب تعاوني حتى 8 لاعبين يجمع بين متعة الضحك ورعب البقاء"
+    ],
+    "minRequirements": {
+      "os": "Windows 7",
+      "cpu": "معالج ثنائي النواة 2.4 GHz",
+      "gpu": "NVIDIA GeForce 8800GT / ATI Radeon HD 3850",
+      "ram": "4 جيجابايت RAM",
+      "storage": "5 جيجابايت"
+    },
+    "recRequirements": {
+      "os": "Windows 10",
+      "cpu": "معالج رباعي النواة",
+      "gpu": "NVIDIA GeForce GTX 560",
+      "ram": "4 جيجابايت RAM",
+      "storage": "5 جيجابايت SSD"
+    },
+    "similarGameIds": [
+      "rust",
+      "valheim",
+      "subnautica"
+    ],
+    "trailerOrGameplayNote": "تجربة بقاء الغابة الأكثر توتراً وإمتاعاً مع الأصدقاء.",
+    "tags": [
+      "غابة",
+      "بقاء",
+      "رعب",
+      "أكلة لحوم البشر",
+      "كهوف",
+      "بناء",
+      "تعاوني"
+    ]
+  },
+  {
+    "id": "ark-survival-ascended",
+    "title": "آرك: النجاة المطورة",
+    "titleEn": "ARK: Survival Ascended",
+    "rating": 8.5,
+    "reviewCount": 130000,
+    "genre": [
+      "ترويض ديناصورات",
+      "بقاء وصياغة",
+      "عالم مفتوح عملاق",
+      "أونلاين"
+    ],
+    "category": [
+      "pc",
+      "ps5",
+      "multiplayer",
+      "long-story"
+    ],
+    "coverImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2399830/library_600x900_2x.jpg",
+    "backdropImage": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2399830/library_hero.jpg",
+    "releaseYear": "2023",
+    "developer": "Studio Wildcard",
+    "description": "استيقظ على جزيرة بدائية تعج بالديناصورات والوحوش ما قبل التاريخ. روّض الـ T-Rex والتيرانودون الطائر، ابنِ مدناً وقواعد ضخمة، وحارب القبائل الأخرى بأسلحة متقدمة وتكنولوجيا غامضة على محرك UE5.",
+    "features": [
+      "ترويض أكثر من 100 نوع من الديناصورات وركوبها واستخدامها في المعارك",
+      "رسوميات جيل قادم مبهرة بفيزياء ماء وأوراق شجر ديناميكية على UE5",
+      "سيرفرات قبائل وحروب ضخمة بين اللاعبين في عوالم متعددة",
+      "نظام تربية وتهجين جيني متقدم للديناصورات لصنع أقوى السلالات"
+    ],
+    "minRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "AMD Ryzen 5 2600X / Intel Core i7-6800K",
+      "gpu": "AMD Radeon RX 5600 XT / NVIDIA GeForce GTX 1080",
+      "ram": "16 جيجابايت RAM",
+      "storage": "80 جيجابايت SSD"
+    },
+    "recRequirements": {
+      "os": "Windows 10 / 11 (64-bit)",
+      "cpu": "AMD Ryzen 5 3600X / Intel i5-10600K",
+      "gpu": "AMD Radeon RX 6800 / NVIDIA GeForce RTX 3080",
+      "ram": "32 جيجابايت RAM",
+      "storage": "80 جيجابايت SSD NVMe"
+    },
+    "similarGameIds": [
+      "rust",
+      "valheim",
+      "minecraft"
+    ],
+    "trailerOrGameplayNote": "العالم الأسطوري للديناصورات والبقاء بأحدث تقنيات المحركات.",
+    "tags": [
+      "ديناصورات",
+      "آرك",
+      "ترويض",
+      "بقاء",
+      "عالم مفتوح",
+      "تي ريكس",
+      "ue5"
+    ]
+  }
+];
+    let currentFilter = 'all';
+
+    function createInContentAdSlot() {
+      const slot = document.createElement('div');
+      slot.className = 'in-content-ad-slot';
+      const optionsScript = document.createElement('script');
+      optionsScript.text = `
+        window.atOptions = {
+          'key': '54de5027e97a81ba9cd3ec33954b8698',
+          'format': 'iframe',
+          'height': 250,
+          'width': 300,
+          'params': {}
+        };
+      `;
+      const invokeScript = document.createElement('script');
+      invokeScript.src = 'https://pl31506750.profitableratecpmnetwork.com/00/8f/00/008f0061b7d4bd4a696c0e83c2fb4e2b.js';
+      slot.appendChild(optionsScript);
+      slot.appendChild(invokeScript);
+      return slot;
+    }
+
+    function renderGames(list) {
+      const grid = document.getElementById('gamesGrid');
+      grid.innerHTML = '';
+      if (list.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:#64748b;">لا توجد ألعاب مطابقة لبحثك، جرب كلمة أخرى.</div>';
+        return;
+      }
+      const AD_SLOT_INTERVAL = 6;
+      list.forEach((game, index) => {
+        if (index > 0 && index % AD_SLOT_INTERVAL === 0) {
+          grid.appendChild(createInContentAdSlot());
+        }
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.onclick = () => openGameModal(game.id);
+        card.innerHTML = `
+          <img src="${game.coverImage}" class="card-img" alt="${game.title}">
+          <div class="card-body">
+            <div>
+              <div class="card-title">${game.title}</div>
+              <div class="card-genre">${game.genre.join(' • ')}</div>
+              <div class="card-desc">${game.description.substring(0, 100)}...</div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+              <span class="card-rating">★ ${game.rating}</span>
+              <span style="font-size:12px; color:var(--neon-purple); font-weight:bold;">التفاصيل ومواصفات التشغيل ←</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterGames(category, element) {
+      currentFilter = category;
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (element) element.classList.add('active');
+      const filtered = category === 'all' 
+        ? database 
+        : database.filter(g => g.category.includes(category));
+      renderGames(filtered);
+    }
+
+    function normalizeText(text) {
+      if (!text) return '';
+      return text
+        .toLowerCase()
+        .replace(/[ً-ٰٟ]/g, '')
+        .replace(/[إأآا]/g, 'ا')
+        .replace(/ى/g, 'ي')
+        .replace(/ة/g, 'ه')
+        .replace(/[-_،,.:;!؟?]/g, ' ')
+        .trim();
+    }
+
+    function performSearch() {
+      const rawVal = document.getElementById('searchInput').value.trim();
+      const val = normalizeText(rawVal);
+      const aiBox = document.getElementById('aiResponseBox');
+      const aiContent = document.getElementById('aiContent');
+      const aiTips = document.getElementById('aiTips');
+
+      if (!val) {
+        aiBox.style.display = 'none';
+        filterGames(currentFilter);
+        return;
+      }
+
+      // Natural language simulation
+      aiBox.style.display = 'block';
+      if (val.includes('تشبه') || val.includes('ويتشر') || val.includes('witcher')) {
+        aiContent.innerText = 'بناءً على طلبك لألعاب تشبه The Witcher 3: رشحنا لك ألعاب القصة العميقة والعوالم المفتوحة مثل Red Dead Redemption 2 و Elden Ring و Cyberpunk 2077.';
+        aiTips.innerText = '💡 نصيحة المساعد: استمتع بالقرارات الأخلاقية المتشعبة ونظام السرد السينمائي.';
+      } else if (val.includes('ضعيف') || val.includes('خفيف')) {
+        aiContent.innerText = 'ترشيحات الأجهزة الضعيفة: ألعاب خفيفة خارقة تعمل بسلاسة فائقة بمعدل 60 إطاراً مثل Hollow Knight و Hades و CS2 و Celeste.';
+        aiTips.innerText = '💡 نصيحة المساعد: لا تحتاج لكرت شاشة منفصل، كروت Intel/AMD المدمجة تكفي تماماً.';
+      } else if (val.includes('رعب') || val.includes('مخيف')) {
+        aiContent.innerText = 'ترشيحات ألعاب الرعب: تحف الرعب النفسي وبقاء الزومبي مثل Resident Evil 4 و Silent Hill 2 و Dead Space و Alan Wake 2.';
+        aiTips.innerText = '💡 نصيحة المساعد: استخدم سماعات رأس ثلاثية الأبعاد لأقصى تجربة اندماج ورعب.';
+      } else if (val.includes('gta') || val.includes('قراند') || val.includes('متطلبات')) {
+        aiContent.innerText = 'متطلبات تشغيل GTA VI وعناوين الجيل الجديد تتطلب معالجاً حديثاً و 16GB RAM كحد أدنى وقرص SSD فائق السرعة.';
+        aiTips.innerText = '💡 نصيحة المساعد: كروت الفئة المتوسطة (RTX 2070 / RX 5700) توفر أداءً ممتازاً.';
+      } else {
+        aiContent.innerText = 'تم فحص استفسارك في قاعدة بيانات manassi.com (' + database.length + ' لعبة) ومطابقة أفضل العناوين ذات الصلة.';
+        aiTips.innerText = '💡 نصيحة المساعد: انقر على أي لعبة لاستعراض بطاقتها ومواصفاتها الكاملة.';
+      }
+
+      // Smart multi-field search with normalization
+      const results = database.filter(g => {
+        const titleNorm = normalizeText(g.title);
+        const titleEnNorm = normalizeText(g.titleEn);
+        const descNorm = normalizeText(g.description);
+        const devNorm = normalizeText(g.developer);
+        const genreNorm = g.genre.map(normalizeText).join(' ');
+        const tagsNorm = g.tags.map(normalizeText).join(' ');
+
+        // Expand common gaming synonyms
+        const isGTA = (val.includes('قراند') || val.includes('جراند')) && (titleNorm.includes('سرقه') || titleEnNorm.includes('gta') || titleEnNorm.includes('grand'));
+        const isSouls = val.includes('سولز') && (tagsNorm.includes('سولز') || titleNorm.includes('ايلدن') || titleEnNorm.includes('souls') || titleEnNorm.includes('elden'));
+
+        return titleNorm.includes(val) ||
+          titleEnNorm.includes(val) ||
+          descNorm.includes(val) ||
+          devNorm.includes(val) ||
+          genreNorm.includes(val) ||
+          tagsNorm.includes(val) ||
+          isGTA ||
+          isSouls;
+      });
+      renderGames(results);
+    }
+
+    function applyPrompt(text) {
+      document.getElementById('searchInput').value = text;
+      performSearch();
+    }
+
+    function randomSuggestion() {
+      const randomIdx = Math.floor(Math.random() * database.length);
+      openGameModal(database[randomIdx].id);
+    }
+
+    function openGameModal(gameId) {
+      const game = database.find(g => g.id === gameId);
+      if (!game) return;
+      document.getElementById('mTitle').innerText = game.title + ' (' + game.titleEn + ')';
+      document.getElementById('mDesc').innerText = game.description;
+      
+      const table = document.getElementById('mSpecsTable');
+      table.innerHTML = `
+        <tr><th>المكون</th><th>الحد الأدنى</th><th>الموصى به</th></tr>
+        <tr><td>نظام التشغيل</td><td>${game.minRequirements.os}</td><td>${game.recRequirements.os}</td></tr>
+        <tr><td>المعالج</td><td>${game.minRequirements.cpu}</td><td>${game.recRequirements.cpu}</td></tr>
+        <tr><td>كرت الشاشة</td><td>${game.minRequirements.gpu}</td><td>${game.recRequirements.gpu}</td></tr>
+        <tr><td>الذاكرة RAM</td><td>${game.minRequirements.ram}</td><td>${game.recRequirements.ram}</td></tr>
+        <tr><td>التخزين</td><td>${game.minRequirements.storage}</td><td>${game.recRequirements.storage}</td></tr>
+      `;
+      document.getElementById('gameModal').style.display = 'flex';
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'gameModal') closeModalDirect();
+    }
+    function closeModalDirect() {
+      document.getElementById('gameModal').style.display = 'none';
+    }
+
+    // Initial render
+    renderGames(database);
+  </script>
+</body>
+</html>
